@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aibibang.web.business.dao.HistoryOrderDao">
+
+	<parameterMap id="parameterMap" type="com.aibibang.web.business.entity.HistoryOrder"></parameterMap>
+	<resultMap id="resultMap" type="com.aibibang.web.business.entity.HistoryOrder">
+		<result property="id" column="id"/>
+		<result property="createuser" column="createuser"/>
+		<result property="createdate" column="createdate"/>
+		<result property="ordername" column="ordername"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		select
+			<trim suffixOverrides=",">
+				t.id,
+				t.createuser,
+				t.createdate,
+				t.ordername,
+				t.remark,
+		 	</trim>
+		from history_order t
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		<where>
+			<if test="createuser != null and createuser != ''">
+				t.createuser = #{createuser}
+			</if>
+			<if test="createdate != null and createdate != ''">
+				t.createdate = #{createdate}
+			</if>
+			<if test="ordername != null and ordername != ''">
+				t.ordername = #{ordername}
+			</if>
+			<if test="remark != null and remark != ''">
+				t.remark = #{remark}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" parameterType="java.lang.Integer" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		where id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into history_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			createuser,
+			createdate,
+			ordername,
+			remark,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{createuser},
+			#{createdate},
+			#{ordername},
+			#{remark},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into history_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			createuser,
+			createdate,
+			ordername,
+			remark,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.createuser},
+				#{item.createdate},
+				#{item.ordername},
+				#{item.remark},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update history_order
+		<set>
+			createuser = #{createuser},
+			createdate = #{createdate},
+			ordername = #{ordername},
+			remark = #{remark},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update history_order
+		<set>
+			<if test="createuser != null">
+			createuser = #{createuser},
+			</if>
+			<if test="createdate != null">
+			createdate = #{createdate},
+			</if>
+			<if test="ordername != null">
+			ordername = #{ordername},
+			</if>
+			<if test="remark != null">
+			remark = #{remark},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from history_order where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from history_order where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

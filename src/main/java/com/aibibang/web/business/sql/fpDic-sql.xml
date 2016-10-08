@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aibibang.web.business.dao.FpDicDao">
+
+	<parameterMap id="parameterMap" type="com.aibibang.web.business.entity.FpDic"></parameterMap>
+	<resultMap id="resultMap" type="com.aibibang.web.business.entity.FpDic">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="level" column="level"/>
+		<result property="price" column="price"/>
+		<result property="pid" column="pid"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		select
+			<trim suffixOverrides=",">
+				t.id,
+				t.name,
+				t.level,
+				t.price,
+				t.pid,
+		 	</trim>
+		from fp_dic t
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		<where>
+			<if test="name != null and name != ''">
+				t.name = #{name}
+			</if>
+			<if test="level != null and level != ''">
+				t.level = #{level}
+			</if>
+			<if test="price != null and price != ''">
+				t.price = #{price}
+			</if>
+			<if test="pid != null and pid != ''">
+				t.pid = #{pid}
+			</if>
+		</where>
+	</select>
+	
+	<select id="listDic" parameterType="java.lang.Integer" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		where t.pid = #{pid}
+	</select>
+	
+	<select id="getById" parameterType="java.lang.Integer" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		where id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into fp_dic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			name,
+			level,
+			price,
+			pid,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{name},
+			#{level},
+			#{price},
+			#{pid},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into fp_dic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			name,
+			level,
+			price,
+			pid,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.name},
+				#{item.level},
+				#{item.price},
+				#{item.pid},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update fp_dic
+		<set>
+			name = #{name},
+			level = #{level},
+			price = #{price},
+			pid = #{pid},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update fp_dic
+		<set>
+			<if test="name != null">
+			name = #{name},
+			</if>
+			<if test="level != null">
+			level = #{level},
+			</if>
+			<if test="price != null">
+			price = #{price},
+			</if>
+			<if test="pid != null">
+			pid = #{pid},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from fp_dic where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from fp_dic where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>

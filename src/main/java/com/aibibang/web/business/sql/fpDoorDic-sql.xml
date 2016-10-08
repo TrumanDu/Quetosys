@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aibibang.web.business.dao.FpDoorDicDao">
+
+	<parameterMap id="parameterMap" type="com.aibibang.web.business.entity.FpDoorDic"></parameterMap>
+	<resultMap id="resultMap" type="com.aibibang.web.business.entity.FpDoorDic">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="level" column="level"/>
+		<result property="price" column="price"/>
+		<result property="price2" column="price2"/>
+		<result property="price3" column="price3"/>
+		<result property="pid" column="pid"/>
+	</resultMap>
+	
+	<sql id="columnSql">
+		select
+			<trim suffixOverrides=",">
+				t.id,
+				t.name,
+				t.level,
+				t.price,
+				t.price2,
+				t.price3,
+				t.pid,
+		 	</trim>
+		from fp_door_dic t
+	</sql>
+	
+	<select id="find" parameterMap="parameterMap" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		<where>
+			<if test="name != null and name != ''">
+				t.name = #{name}
+			</if>
+			<if test="level != null and level != ''">
+				t.level = #{level}
+			</if>
+			<if test="price != null and price != ''">
+				t.price = #{price}
+			</if>
+			<if test="price2 != null and price2 != ''">
+				t.price2 = #{price2}
+			</if>
+			<if test="price3 != null and price3 != ''">
+				t.price3 = #{price3}
+			</if>
+			<if test="pid != null and pid != ''">
+				t.pid = #{pid}
+			</if>
+		</where>
+	</select>
+	<select id="listDic" parameterType="java.lang.Integer" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		
+	</select>
+	<select id="getById" parameterType="java.lang.Integer" resultMap="resultMap">
+		<include refid="columnSql"></include>
+		where id = #{value}
+	</select>
+	
+	<insert id="add" parameterMap="parameterMap">
+		insert into fp_door_dic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			name,
+			level,
+			price,
+			price2,
+			price3,
+			pid,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{name},
+			#{level},
+			#{price},
+			#{price2},
+			#{price3},
+			#{pid},
+		</trim>
+	</insert>
+	
+	<insert id="batchAdd" parameterType="java.util.List">
+		insert into fp_door_dic
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			name,
+			level,
+			price,
+			price2,
+			price3,
+			pid,
+		</trim>
+		values
+		<foreach collection="list" item="item" separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				#{item.name},
+				#{item.level},
+				#{item.price},
+				#{item.price2},
+				#{item.price3},
+				#{item.pid},
+			</trim>
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterMap="parameterMap">
+		update fp_door_dic
+		<set>
+			name = #{name},
+			level = #{level},
+			price = #{price},
+			price2 = #{price2},
+			price3 = #{price3},
+			pid = #{pid},
+		</set>
+		where id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterMap="parameterMap">
+		update fp_door_dic
+		<set>
+			<if test="name != null">
+			name = #{name},
+			</if>
+			<if test="level != null">
+			level = #{level},
+			</if>
+			<if test="price != null">
+			price = #{price},
+			</if>
+			<if test="price2 != null">
+			price2 = #{price2},
+			</if>
+			<if test="price3 != null">
+			price3 = #{price3},
+			</if>
+			<if test="pid != null">
+			pid = #{pid},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from fp_door_dic where id = #{value}
+	</delete>
+	
+	<delete id="batchDelete" parameterType="java.util.List">
+		delete from fp_door_dic where id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>
