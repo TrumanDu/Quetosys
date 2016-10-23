@@ -128,13 +128,24 @@ function ToTrans(a) {
     return c;  
 }  
 
+Array.prototype.del=function(dx){
+	if(isNaN(dx)||dx>this.length){
+		return false;
+	}
+    for(var i=0,n=0;i<this.length;i++){
+       if(this[i]!=this[dx]){
+         this[n++]=this[i]
+       }
+     }
+     this.length-=1
+};
 
 var product;
 var order_num = 0;
 var order_detail_array =new Array();
 
 function COrder(classify, catena, name, colour, price, quantity,
-		totalprices, discount, endprices, remark1) {
+		totalprices, discount, endprices, remark1,flag) {
 	this.classify = classify;
 	this.catena = catena;
 	this.name = name;
@@ -142,10 +153,53 @@ function COrder(classify, catena, name, colour, price, quantity,
 	this.price = price;
 	this.quantity = quantity;
 	this.totalprices = totalprices;
-	this.totalprices = totalprices;
 	this.discount = discount;
 	this.endprices = endprices;
 	this.remark1 = remark1;
+	this.flag = flag;
+}
+
+function SOrder1(sSelectPin1, sSelectProduct1, sSelectProduct2, sSelectProduct3, s_product1_open, sdoorSelected1,
+		scolorSelected1, s_product1_width, s_product1_thick, s_product1_height,s_product1_price,s_product_sum1,s_product_discount1,
+		s_product_remark1,totalprices1,endprices1,flag) {
+	this.sSelectPin1 =  sSelectPin1;
+	this.sSelectProduct1 = sSelectProduct1;
+	this.sSelectProduct2 = sSelectProduct2;
+	this.sSelectProduct3 = sSelectProduct3;
+	this.s_product1_open = s_product1_open;
+	this.sdoorSelected1 = sdoorSelected1;
+	this.scolorSelected1 = scolorSelected1;
+	this.s_product1_width = s_product1_width;
+	this.s_product1_thick = s_product1_thick;
+	this.s_product1_height = s_product1_height;
+	this.s_product1_price = s_product1_price;
+	this.s_product_sum1 = s_product_sum1;
+	this.s_product_discount1 = s_product_discount1;
+	this.s_product_remark1 = s_product_remark1;
+	this.totalprices1 = totalprices1;
+	this.endprices1 = endprices1;
+	this.flag = flag;
+}
+
+function SOrder3(sSelectPin3, sSelectProduct7,  s_product3_open, sdoorSelected3,
+		scolorSelected3, s_product3_width, s_product3_thick, s_product3_height,s_product3_price,s_product_sum3,s_product_discount3,
+		s_product_remark3,totalprices3,endprices3,method,flag) {
+	this.sSelectPin3 =  sSelectPin3;
+	this.sSelectProduct7 = sSelectProduct7;
+	this.s_product3_open = s_product3_open;
+	this.sdoorSelected3 = sdoorSelected3;
+	this.scolorSelected3 = scolorSelected3;
+	this.s_product3_width = s_product3_width;
+	this.s_product3_thick = s_product3_thick;
+	this.s_product3_height = s_product3_height;
+	this.s_product3_price = s_product3_price;
+	this.s_product_sum3 = s_product_sum3;
+	this.s_product_discount3 = s_product_discount3;
+	this.s_product_remark3 = s_product_remark3;
+	this.totalprices3 = totalprices3;
+	this.endprices3 = endprices3;
+	this.method = method;
+	this.flag = flag;
 }
 
 function addCOrder() {
@@ -162,7 +216,7 @@ function addCOrder() {
 			* parseFloat(discount);
 	var remark1 = $("#product_remark").val();
 	var cOrder = new COrder(classify, catena, name, colour, price,
-			quantity, totalprices, discount, endprices, remark1);
+			quantity, totalprices, discount, endprices, remark1,0);
 	order_detail_array.push(cOrder);
 	// console.log(cOrder);
 	var newRow = "<tr><td>" + classify + "</td><td>" + catena
@@ -174,21 +228,37 @@ function addCOrder() {
 	order_num = order_num + endprices;
 	$("#order_num").html(order_num + "元");
 	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-	$("#c_order td").dblclick(
+	$("#c_order tr:last td").dblclick(
 			function() {
-				var trSeq = $(this).parent().parent().find("tr").index(
-						$(this).parent());
-				if (trSeq > 1) {
-					if (order_num > 0) {
-						var os = $(this).parent().find('td').eq(9).text();
-						order_num = order_num - os;
-						$("#order_num").html(order_num + "元");
-						$("#order_num_upper").html(
-								"合计金额：" + toUpper(order_num + ""));
+				if(confirm("是否确认删除？")){
+					var trSeq = $(this).parent().parent().find("tr").index(
+							$(this).parent());
+					if (trSeq > 1) {
+						if (order_num > 0) {
+							var os = $(this).parent().find('td').eq(8).text();
+							order_num = order_num - parseInt(os);
+							$("#order_num").html(order_num + "元");
+							$("#order_num_upper").html(
+									"合计金额：" + toUpper(order_num + ""));
+						}
+						var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==0){
+								var row = "<td>" + order.classify + "</td><td>" + order.catena
+								+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>"
+								+ order.price + "</td>" + "<td>" + order.quantity + "</td><td>"
+								+ order.totalprices + "</td><td>" + order.discount + "</td><td>"
+								+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
+						$(this).parent().remove();
 					}
-					$(this).parent().remove();
-				}
-
+				 }
 			})
 	$('#myModal').modal('hide');
 }
@@ -215,9 +285,12 @@ function addSOrder(id) {
     	var totalprices1 = parseInt(s_product1_price) * parseInt(s_product_sum1);
     	var endprices1 = parseInt(s_product1_price) * parseInt(s_product_sum1)
     			* parseFloat(s_product_discount1);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	
+		var sOrder1 = new SOrder1(sSelectPin1, sSelectProduct1, sSelectProduct2, sSelectProduct3, s_product1_open, sdoorSelected1,
+					scolorSelected1, s_product1_width, s_product1_thick, s_product1_height,s_product1_price,s_product_sum1,s_product_discount1,
+					s_product_remark1,totalprices1,endprices1,1);
+		 order_detail_array.push(sOrder1);
+		 
     	// console.log(cOrder);
     	var newRow1 = "<tr><td>" + sSelectPin1 + "</td><td>" + sSelectProduct1
     			+ "</td><td>" + sSelectProduct2 + "</td><td>" + sSelectProduct3 + "</td><td>"
@@ -228,21 +301,37 @@ function addSOrder(id) {
     	order_num = order_num + endprices1;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_1 td").dblclick(
+    	$("#s_order_1 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(14).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+						var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==1){
+								var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+								+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
+								+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
+								+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
+								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				   }
     			})
     }else if(id==2){
     	var sSelectPin2 =  $("#sSelectPin2").children('option:selected').text();
@@ -264,9 +353,10 @@ function addSOrder(id) {
     	var totalprices2 = parseInt(s_product2_price) * parseInt(s_product_sum2);
     	var endprices2 = parseInt(s_product2_price) * parseInt(s_product_sum2)
     			* parseFloat(s_product_discount2);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	var sOrder2 = new SOrder1(sSelectPin2, sSelectProduct4, sSelectProduct5, sSelectProduct6, s_product2_open, sdoorSelected2,
+				scolorSelected2, s_product2_width, s_product2_thick, s_product2_height,s_product2_price,s_product_sum2,s_product_discount2,
+				s_product_remark2,totalprices2,endprices2,2);
+	     order_detail_array.push(sOrder2);
     	// console.log(cOrder);
     	var newRow2 = "<tr><td>" + sSelectPin2 + "</td><td>" + sSelectProduct4
     			+ "</td><td>" + sSelectProduct5 + "</td><td>" + sSelectProduct6 + "</td><td>"
@@ -277,21 +367,37 @@ function addSOrder(id) {
     	order_num = order_num + endprices2;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_2 td").dblclick(
+    	$("#s_order_2 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(14).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+    					var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==2){
+								var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+								+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
+								+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
+								+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
+								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				 }
     			})	
     }else if(id==3){
     	var sSelectPin3 =  $("#sSelectPin3").children('option:selected').text();
@@ -311,9 +417,10 @@ function addSOrder(id) {
     	var totalprices3 = parseInt(s_product3_price) * parseInt(s_product_sum3);
     	var endprices3 = parseInt(s_product3_price) * parseInt(s_product_sum3)
     			* parseFloat(s_product_discount3);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	var sOrder3 = new SOrder3(sSelectPin3, sSelectProduct7,  "", sdoorSelected3,
+    			scolorSelected3, s_product3_width, s_product3_thick, s_product3_height,s_product3_price,s_product_sum3,s_product_discount3,
+    			s_product_remark3,totalprices3,endprices3,"",3);
+	    order_detail_array.push(sOrder3);
     	// console.log(cOrder);
     	var newRow3 = "<tr><td>" + sSelectPin3 + "</td><td>" + sSelectProduct7
     			+ "</td><td>" + s_product3_width + "</td><td>" + s_product3_thick + "</td><td>"
@@ -323,21 +430,36 @@ function addSOrder(id) {
     	order_num = order_num + endprices3;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_3 td").dblclick(
+    	$("#s_order_3 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(11).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+    					var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==3){
+								var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								+ "</td><td>" + order.s_product3_width + "</td><td>" + order.s_product3_thick + "</td><td>"
+								+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				 }
     			})	
     }else if(id==4){
     	var sSelectPin4 =  $("#sSelectPin4").children('option:selected').text();
@@ -358,9 +480,10 @@ function addSOrder(id) {
     	var totalprices4 = parseInt(s_product4_price) * parseInt(s_product_sum4);
     	var endprices4 = parseInt(s_product4_price) * parseInt(s_product_sum4)
     			* parseFloat(s_product_discount4);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	var sOrder4 = new SOrder3(sSelectPin4, sSelectProduct8,  s_product4_open, sdoorSelected4,
+    			scolorSelected4, s_product4_width, s_product4_thick, s_product4_height,s_product4_price,s_product_sum4,s_product_discount4,
+    			s_product_remark4,totalprices4,endprices4,"",4);
+	    order_detail_array.push(sOrder4);
     	// console.log(cOrder);
     	var newRow4 = "<tr><td>" + sSelectPin4 + "</td><td>" + sSelectProduct8
     			+ "</td><td>" + s_product4_height + "</td><td>" + s_product4_width + "</td><td>"
@@ -370,21 +493,36 @@ function addSOrder(id) {
     	order_num = order_num + endprices4;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_4 td").dblclick(
+    	$("#s_order_4 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(12).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+    					var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==4){
+								var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
+								+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				 }
     			})	
     }else if(id==5){
     	var sSelectPin5 =  $("#sSelectPin5").children('option:selected').text();
@@ -406,9 +544,10 @@ function addSOrder(id) {
     	var totalprices5 = parseInt(s_product5_price) * parseInt(s_product_sum5);
     	var endprices5 = parseInt(s_product5_price) * parseInt(s_product_sum5)
     			* parseFloat(s_product_discount5);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	var sOrder5 = new SOrder3(sSelectPin5, sSelectProduct9,  s_product5_open, sdoorSelected5,
+    			scolorSelected5, s_product5_width, s_product5_thick, s_product5_height,s_product5_price,s_product_sum5,s_product_discount5,
+    			s_product_remark5,totalprices5,endprices5,s_product5_method,5);
+	    order_detail_array.push(sOrder5);
     	// console.log(cOrder);
     	var newRow5 = "<tr><td>" + sSelectPin5 + "</td><td>" + sSelectProduct9
     			+ "</td><td>" + s_product5_open + "</td><td>" + s_product5_height + "</td><td>" + s_product5_thick + "</td><td>"
@@ -418,21 +557,36 @@ function addSOrder(id) {
     	order_num = order_num + endprices5;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_5 td").dblclick(
+    	$("#s_order_5 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(12).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+    					var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==5){
+								var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								+ "</td><td>" + order.s_product3_open + "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_thick + "</td><td>"
+								+ order.s_product3_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected3 + "</td><td>"
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				 }
     			})	
     }else if(id==6){
     	var sSelectPin6 =  $("#sSelectPin6").children('option:selected').text();
@@ -454,9 +608,10 @@ function addSOrder(id) {
     	var totalprices6 = parseInt(s_product6_price) * parseInt(s_product_sum6);
     	var endprices6 = parseInt(s_product6_price) * parseInt(s_product_sum6)
     			* parseFloat(s_product_discount6);
-    	/*var cOrder = new COrder(classify, catena, name, colour, price,
-    			quantity, totalprices, discount, endprices, remark1);
-    	order_detail_array.push(cOrder);*/
+    	var sOrder6 = new SOrder3(sSelectPin6, sSelectProduct10,s_product6_method, sdoorSelected6,
+    			scolorSelected6, s_product6_width, s_product6_thick, s_product6_height,s_product6_price,s_product_sum6,s_product_discount6,
+    			s_product_remark6,totalprices6,endprices6,"",6);
+	    order_detail_array.push(sOrder6);
     	// console.log(cOrder);
     	var newRow6 = "<tr><td>" + sSelectPin6 + "</td><td>" + sSelectProduct10
     			+ "</td><td>" + s_product6_height + "</td><td>" + s_product6_width + "</td><td>"
@@ -466,21 +621,36 @@ function addSOrder(id) {
     	order_num = order_num + endprices6;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-    	$("#s_order_6 td").dblclick(
+    	$("#s_order_6 tr:last td").dblclick(
     			function() {
+    				if(confirm("是否确认删除？")){
     				var trSeq = $(this).parent().parent().find("tr").index(
     						$(this).parent());
     				if (trSeq > 1) {
     					if (order_num > 0) {
-    						var os = $(this).parent().find('td').eq(9).text();
-    						order_num = order_num - os;
+    						var os = $(this).parent().find('td').eq(11).text();
+    						order_num = order_num - parseInt(os);
     						$("#order_num").html(order_num + "元");
     						$("#order_num_upper").html(
     								"合计金额：" + toUpper(order_num + ""));
     					}
+    					var delIndex;
+						for(var i = 0; i < order_detail_array.length; i++){
+							var order = order_detail_array[i];
+							if(order.flag==6){
+								var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
+								+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.scolorSelected3 + "</td><td>"
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								if(row==$(this).parent().html()){
+									delIndex=i;
+								}
+							}
+						}
+						order_detail_array.del(delIndex);
     					$(this).parent().remove();
     				}
-
+   				  }
     			})	
     }else{
     	
@@ -492,17 +662,76 @@ function editOrder(){
 	order_num=0;
 	for(var i = 0; i < order_detail_array.length; i++){
 		var order = order_detail_array[i];
-		var newRow = "<tr><td>" + order.classify + "</td><td>" + order.catena
-		+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>"
-		+ order.price + "</td>" + "<td>" + order.quantity + "</td><td>"
-		+ order.totalprices + "</td><td>" + order.discount + "</td><td>"
-		+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td></tr>";
-	$("#c_order tr:last").after(newRow);
-	order_num = order_num + order.endprices;
+		var div;
+		if(order.flag==0){
+			var newRow = "<tr><td>" + order.classify + "</td><td>" + order.catena
+			+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>"
+			+ order.price + "</td>" + "<td>" + order.quantity + "</td><td>"
+			+ order.totalprices + "</td><td>" + order.discount + "</td><td>"
+			+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td></tr>";
+		    $("#c_order tr:last").after(newRow);
+		    order_num = order_num + order.endprices;
+		    div="#c_order td"
+		}else if(order.flag==1){
+	    	var newRow1 = "<tr><td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+			+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
+			+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
+			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
+			+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td></tr>";
+			$("#s_order_1 tr:last").after(newRow1);
+			order_num = order_num + order.endprices1;
+			div="#s_order_1 td"
+		}else if(order.flag==2){
+			var newRow2 = "<tr><td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+			+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
+			+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
+			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
+			+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td></tr>";
+			$("#s_order_2 tr:last").after(newRow2);
+			order_num = order_num + order.endprices1;
+			div="#s_order_2 td"
+		}else if(order.flag==3){
+	    	var newRow3 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+			+ "</td><td>" + order.s_product3_width + "</td><td>" + order.s_product3_thick + "</td><td>"
+			+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
+			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			$("#s_order_3 tr:last").after(newRow3);
+			order_num = order_num + order.endprices3;
+			div="#s_order_3 td"
+		}else if(order.flag==4){
+			var newRow4 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+			+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
+			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
+			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			$("#s_order_4 tr:last").after(newRow4);
+			order_num = order_num + order.endprices3;
+			div="#s_order_4 td"
+		}else if(order.flag==5){
+	    	var newRow5 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+			+ "</td><td>" + order.s_product3_open + "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_thick + "</td><td>"
+			+ order.s_product3_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected3 + "</td><td>"
+			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			$("#s_order_5 tr:last").after(newRow5);
+			order_num = order_num + order.endprices3;
+			div="#s_order_5 td"
+		}else if(order.flag==6){
+			var newRow6 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+			+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
+			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.scolorSelected3 + "</td><td>"
+			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+	        $("#s_order_6 tr:last").after(newRow6);
+	        order_num = order_num + order.endprices3;
+	        div="#s_order_6 td"
+		}else{
+			
+		}
+		
+	
 	$("#order_num").html(order_num + "元");
 	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
-	$("#c_order td").dblclick(
+	$(div).dblclick(
 		function() {
+			if(confirm("是否确认删除？")){
 			var trSeq = $(this).parent().parent().find("tr").index(
 					$(this).parent());
 			if (trSeq > 1) {
@@ -515,7 +744,7 @@ function editOrder(){
 				}
 				$(this).parent().remove();
 			}
-
+		  }
 		})
 	}
 	
@@ -994,6 +1223,46 @@ function addSelfProduct(id) {
 }
 
 function print() {
+	var flagArray=[0,0,0,0,0,0,0,0]
+	for(var i = 0; i < order_detail_array.length; i++){
+		var order = order_detail_array[i];
+		if(order.flag==0){
+			flagArray[0]=1;
+			continue;
+		}else if(order.flag==1){
+			flagArray[1]=1;
+			continue;
+		}else if(order.flag==2){
+			flagArray[2]=1;
+			continue;
+		}else if(order.flag==3){
+			flagArray[3]=1;
+			continue;
+		}else if(order.flag==4){
+			flagArray[4]=1;
+			continue;
+		}else if(order.flag==5){
+			flagArray[5]=1;
+			continue;
+		}else if(order.flag==6){
+			flagArray[6]=1;
+			continue;
+		}else{
+			flagArray[7]=1;
+			continue;
+		}
+	}
+	for(var j = 0; j < flagArray.length; j++){
+		if(j==0&&flagArray[j]==0){
+			$("#c_order").remove();
+		}else{
+			if(flagArray[j]==0){
+				var div ="#s_order_"+j;
+				$(div).remove();
+			}
+		}
+	}
+	
 	$("#visaReport").jqprint({
 		debug : false, // 如果是true则可以显示iframe查看效果（iframe默认高和宽都很小，可以再源码中调大），默认是false
 		importCSS : true, // true表示引进原来的页面的css，默认是true。（如果是true，先会找$("link[media=print]")，若没有会去找$("link")中的css文件）

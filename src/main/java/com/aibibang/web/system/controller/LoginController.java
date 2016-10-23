@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
 			
 			SysUser u = sysUserService.findByUsername(user);
 			
-			if(u != null){
+			if(u != null&&u.getPassword().equals(user.getPassword())){
 				
 				HttpSession session = request.getSession();
 				session.setAttribute(SessionAttr.USER_LOGIN.getValue(), u);

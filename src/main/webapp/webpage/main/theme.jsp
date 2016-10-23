@@ -46,7 +46,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<div style="margin-top: 6px;">
-				<span style="color: #fff;font-size: 24px;">尼克</span><span style="color: red;font-size: 24px;">报价系统</span>
+				<span style="color: #fff;font-size: 24px;">派克兄弟家具厂</span>
 			</div>
 			<%-- <a href="#">
 				<img src="${webRoot}/static/admin/layout/img/logo.png" alt="logo" class="logo-default"/>

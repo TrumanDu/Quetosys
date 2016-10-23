@@ -7,9 +7,10 @@
 				<th>#</th>
 				<th>用户名</th>
 				<th>姓名</th>
+				<th>密码</th>
 				<th>组织</th>
 				<th>电话</th>
-				<th>邮箱</th>
+				<th>折扣</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -19,6 +20,7 @@
 				<td>${vs.count + page.offset}</td>
 				<td>${user.username}</td>
 				<td>${user.name}</td>
+				<td>${user.password}</td>
 				<td>${user.orgName}</td>
 				<td>${user.phone}</td>
 				<td>${user.email}</td>

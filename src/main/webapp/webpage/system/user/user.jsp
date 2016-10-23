@@ -107,7 +107,7 @@
         </div>
       </div>
   		<div class="form-group">
-        <label class="col-md-3 control-label">邮箱:</label>
+        <label class="col-md-3 control-label">权限:</label>
         <div class="col-md-4">
         	<div class="input-icon right">
 	        	<i class="fa"></i>
@@ -171,10 +171,10 @@
 			rules: {
 				phone: {
 					phone: true
-				},
+				}/* ,
 				email: {
 					email: true
-				}
+				} */
 			}
 		});
  		// init select2

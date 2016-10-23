@@ -48,7 +48,7 @@
 				<div class="input-icon right">
 					<i class="fa"></i>
 					<input class="form-control form-control-solid placeholder-no-fix" type="text" 
-						autocomplete="off" name="username" value="admin"
+						autocomplete="off" name="username" 
 						placeholder="<spring:message code="login.label.username"></spring:message>"
 						required title="<spring:message code="login.msg.username"></spring:message>"/>
 				</div>
@@ -60,7 +60,7 @@
 				<div class="input-icon right">
 					<i class="fa"></i>
 					<input class="form-control form-control-solid placeholder-no-fix" type="password" 
-						autocomplete="off" name="password" value="123456"
+						autocomplete="off" name="password" 
 						placeholder="<spring:message code="login.label.password"></spring:message>"
 						required title="<spring:message code="login.msg.password"></spring:message>"/>
 				</div>

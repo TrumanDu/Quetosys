@@ -1126,6 +1126,8 @@
 </div>
 
 
+
+
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel2" aria-hidden="true">
@@ -1206,7 +1208,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<table width="100%" border="1" cellpadding="2" cellspacing="0"
+
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" 
 			id="c_order">
 			<tbody>
 				<tr>
@@ -1297,7 +1300,7 @@
 		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_3">
 			<tbody>
 				<tr>
-				<td colspan="13" align="center">
+				<td colspan="14" align="center">
 				<h4><b>橱柜\浴室柜</b></h4></td>
 				</tr>
 				<tr id="c_head">
