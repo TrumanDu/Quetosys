@@ -46,7 +46,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<div style="margin-top: 6px;">
-				<span style="color: #fff;font-size: 24px;">派克兄弟家具厂</span>
+				<span style="color: #fff;font-size: 24px;">派克兄弟家居</span>
 			</div>
 			<%-- <a href="#">
 				<img src="${webRoot}/static/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
@@ -66,7 +66,7 @@
 				<li class="dropdown dropdown-user">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 					<img alt="" class="img-circle" src="${webRoot}/static/admin/layout/img/avatar3_small.jpg"/>
-					<span class="username username-hide-on-mobile">Nick</span>
+					<span class="username username-hide-on-mobile">${USER_LOGIN.username}</span>
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">
@@ -204,7 +204,7 @@
 			Layout.init(); // init layout
 			QuickSidebar.init(); // init quick sidebar
 			//Demo.init(); // init demo features
-
+           
 			// 首页加载
 			$.ajax({
 				type: 'post',
@@ -219,6 +219,6 @@
 	</script>
 	<script src="${webRoot}/static/custom/message_zh_CN.js" type="text/javascript"></script>
 	<script src="${webRoot}/static/custom/common.js" type="text/javascript"></script>
-
+	
 </body>
 </html>

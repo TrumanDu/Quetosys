@@ -145,6 +145,12 @@ public class HistoryOrderController extends BaseController {
 		JSONObject json = new JSONObject();
 		HttpSession session = request.getSession();
 		SysUser u = (SysUser) session.getAttribute(SessionAttr.USER_LOGIN.getValue());
+		String on = historyOrder.getOrdername();
+		if(on.indexOf( u.getUsername()+"_")<0){
+			String name = u.getUsername()+"_"+historyOrder.getOrdername();
+	        historyOrder.setOrdername(name);
+		}
+        
 		historyOrder.setCreatedate(new Date());
 		historyOrder.setCreateuser(u.getUsername());
 		historyOrder.setCreateUserName(u.getName());
@@ -166,6 +172,41 @@ public class HistoryOrderController extends BaseController {
 			logger.error(e.getMessage(), e);
 			json.put("result", "save_fail");
 		}
+		
+		return json.toString();
+	}
+	
+	/**
+	 * 
+	 * <pre>
+	 * 	2016-09-19 15:57 爱毕帮软件工作室
+	 * 	校验
+	 * </pre>
+	 * 
+	 * @param historyOrder
+	 * @return
+	 */
+	@RequestMapping("/validate")
+	@ResponseBody
+	public String validate(HistoryOrder historyOrder,HttpServletRequest request){
+		
+		JSONObject json = new JSONObject();
+		HttpSession session = request.getSession();
+		SysUser u = (SysUser) session.getAttribute(SessionAttr.USER_LOGIN.getValue());
+        String name = historyOrder.getOrdername();
+       
+		
+		if(name.indexOf( u.getUsername()+"_")<0){
+			name = u.getUsername()+"_"+historyOrder.getOrdername();
+	       
+		}
+        int result = historyOrderService.validate(name).intValue();
+        
+        if(result>0){
+        	json.put("result", "true");
+        }else{
+        	json.put("result", "false");
+        }
 		
 		return json.toString();
 	}

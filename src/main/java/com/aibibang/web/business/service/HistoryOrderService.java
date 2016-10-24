@@ -89,6 +89,7 @@ public interface HistoryOrderService{
 	 * @param historyOrder
 	 */
 	public void update(HistoryOrder historyOrder);
+	public Integer validate(String ordername);
 	
 	/**
 	 * 

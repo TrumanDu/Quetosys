@@ -72,6 +72,11 @@ public class HistoryOrderServiceImpl implements HistoryOrderService {
 
 		historyOrderDao.update(historyOrder);
 	}
+	
+	public Integer validate(String name) {
+
+		return historyOrderDao.validate(name);
+	}
 
 	@Override
 	public void delete(Integer id) {

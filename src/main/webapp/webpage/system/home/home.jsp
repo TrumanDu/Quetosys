@@ -31,8 +31,8 @@
 	<br>
 
 
-	<div class="panel panel-primary" id="product">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="product"  style="border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">成品</h3>
 		</div>
 		<div class="panel-body">
@@ -134,8 +134,8 @@
 
 
 
-	<div class="panel panel-primary" id="s_product1" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product1" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（衣柜\书柜\酒柜\鞋柜）</h3>
 		</div>
 		<div class="panel-body">
@@ -299,8 +299,8 @@
 	</div>
 
 
-	<div class="panel panel-primary" id="s_product2" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product2" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（餐边柜\电视柜\矮柜）</h3>
 		</div>
 		<div class="panel-body">
@@ -465,8 +465,8 @@
 
 
 
-	<div class="panel panel-primary" id="s_product3" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product3" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（橱柜\浴室柜）</h3>
 		</div>
 		<div class="panel-body">
@@ -590,8 +590,8 @@
 	</div>
 
 
-	<div class="panel panel-primary" id="s_product4" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product4" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（木门(尺寸为测量长度））</h3>
 		</div>
 		<div class="panel-body">
@@ -731,8 +731,8 @@
 	</div>
 
 
-	<div class="panel panel-primary" id="s_product5" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product5" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（门套\窗套）</h3>
 		</div>
 		<div class="panel-body">
@@ -866,8 +866,8 @@
 	</div>
 
 
-	<div class="panel panel-primary" id="s_product6" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product6" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（木作）</h3>
 		</div>
 		<div class="panel-body">
@@ -1002,8 +1002,8 @@
 	</div>
 
 
-	<div class="panel panel-primary" id="s_product7" style="display: none;">
-		<div class="panel-heading">
+	<div class="panel panel-primary" id="s_product7" style="display: none;border-color: #5a0008;">
+		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（其他）</h3>
 		</div>
 		<div class="panel-body">
@@ -1143,9 +1143,12 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="form-group" >
 					<label class="control-label">订单名称:</label>
+					<form id="orderForm" action="#" method="post">
 						<div>
-							 <input name="oreder_name" id="oreder_name" type="text" class="form-control input-medium" />
+							 <input name="oreder_name" required placeholder="请输入订单名称！" title="请输入订单名称！" id="oreder_name" type="text" class="form-control input-medium" />
 						</div>
+						<input id="save_flag" type="hidden"/>
+					</form>	
 					</div>
 				</div>
 			</div>
@@ -1168,14 +1171,26 @@
 		doorLoadData("101");//获取门形
 		loadSelfData();//获取所有定做数据
 		order_detail_array=$.parseJSON('${historyOrder.remark}');
+		console.log('${historyOrder.id}');
+		console.log('${historyOrder.ordername}');
+		order_detail_id='${historyOrder.id}';
+		order_detail_name='${historyOrder.ordername}';
 		if(order_detail_array==null){
 			order_detail_array = new Array();
 		}
 		if(order_detail_array!=null&&order_detail_array.length>0){
 			editOrder();
+			$("#oreder_name").val(order_detail_name);
 		}
+		$('#orderForm').validate();
 	});
 	var ratio = 0.95;
+	var disUnit = 0.1;
+	var sdiscount="${USER_LOGIN.email}";
+	console.log(sdiscount);
+	if(sdiscount==""){
+		sdiscount=8;
+	}
 	var sSelectProductData;
 	var doorTaoData;
 	loadDoorTaoSelfData();
@@ -1184,6 +1199,12 @@
 	<div id="visaReport">
 		<table width="90%">
 			<tbody>
+			    <tr>
+					<td colspan="12" align="left">
+					<img alt="" src="${webRoot}/static/back.jpg">
+					</td>
+				</tr>
+			    
 				<tr>
 					<td colspan="12" align="center"><h2>
 							<b>家居产品订货单</b>
@@ -1223,12 +1244,12 @@
 					<td>系列</td>
 					<td>产品</td>
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 
@@ -1255,12 +1276,12 @@
 					<td>门型</td>
 					
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1286,12 +1307,12 @@
 					<td>门型</td>
 					
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1312,12 +1333,12 @@
 					<td>高柜</td>
 					<td>门型</td>
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1339,12 +1360,12 @@
 					<td>开启方式</td>
 					<td>门型</td>
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1366,12 +1387,12 @@
 					<td>宽</td>
 					<td>单位</td>
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1392,12 +1413,12 @@
 					<td>高 </td>
 					<td>单位</td>
 					<td>颜色</td>
-					<td>单价</td>
+					<!-- <td>单价</td> -->
 					<td>数量</td>
-					<td>价格</td>
+					<!-- <td>价格</td> -->
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<!-- <td>备注</td> -->
 					<td>备注</td>
 				</tr>
 			</tbody>
@@ -1468,7 +1489,8 @@
 		<table width="100%" style="border: 1px solid black; border-top: none;">
 			<tr>
 				<td colspan="12" align="left">
-					签单人确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保管员确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调度确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安装确认：</td>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设计师确认：
+                </td>
 			</tr>
 		</table>
 		<table width="100%" style="border: 1px solid black; border-top: none;">
@@ -1479,6 +1501,7 @@
 					④本公司产品自顾客收货之日起如结构、工艺等质量问题或造成产品变形、开裂、损坏而影响用户的可直接拨打派克兄弟实木家居服务热线。<br>
 					⑤如无特殊情况，订货周期为2个月。<br> ⑥此订单为您选购家居后的唯一有效凭证，请您妥善保管。<br>
 					⑦本订单有效期为六个月，过期作废。<br>
+					⑧定制品下单生产后不可随意更改材质、颜色、尺寸等；若更改，需付费更改，并征得销售、设计师、工厂下单人员、生产人员的一致同意后方可更改。<br>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;监督电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商场电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;办事处：
 
 				</td>
@@ -1488,8 +1511,8 @@
 	</div>
 	<div class="form-actions">
 		<div class="row">
-			<div class="col-md-offset-5 col-md-6">
-				<a class="btn blue" onclick="saveConfirm()">保存</a> &nbsp;&nbsp; <a
+			<div class="col-md-offset-4 col-md-6">
+				<a class="btn blue" onclick="saveConfirm(1)">保存</a> &nbsp;&nbsp;<a class="btn blue" onclick="saveConfirm(0)">另存为</a> &nbsp;&nbsp; <a
 					class="btn green" onclick="print()">打印</a>
 			</div>
 		</div>

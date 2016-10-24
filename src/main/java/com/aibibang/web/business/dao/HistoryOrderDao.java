@@ -29,5 +29,5 @@ import com.aibibang.common.base.BaseDao;
  */
 public interface HistoryOrderDao extends BaseDao<HistoryOrder, Integer> {
 
-
+	public Integer validate(String ordername);
 }

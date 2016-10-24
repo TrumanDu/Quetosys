@@ -48,6 +48,12 @@
 		where id = #{value}
 	</select>
 	
+	<select id="validate" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*)
+			
+		from history_order t where ordername = #{ordername}
+	</select>
+	
 	<insert id="add" parameterMap="parameterMap">
 		insert into history_order
 		<trim prefix="(" suffix=")" suffixOverrides=",">

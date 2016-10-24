@@ -209,21 +209,24 @@ function addCOrder() {
 	var name = $("#productname").children('option:selected').text();
 	var colour = $("#colorSelected").children('option:selected').text();
 	var price = $("#selectedPrice").html();
-	;
+
 	var quantity = $("#product_sum").val();
 	var totalprices = parseInt(price) * parseInt(quantity);
 	var endprices = parseInt(price) * parseInt(quantity)
-			* parseFloat(discount);
+			* parseFloat(discount)*disUnit;
 	var remark1 = $("#product_remark").val();
 	var cOrder = new COrder(classify, catena, name, colour, price,
 			quantity, totalprices, discount, endprices, remark1,0);
 	order_detail_array.push(cOrder);
 	// console.log(cOrder);
-	var newRow = "<tr><td>" + classify + "</td><td>" + catena
+    /*var newRow = "<tr><td>" + classify + "</td><td>" + catena
 			+ "</td><td>" + name + "</td><td>" + colour + "</td><td>"
 			+ price + "</td>" + "<td>" + quantity + "</td><td>"
-			+ totalprices + "</td><td>" + discount + "</td><td>"
-			+ endprices + "</td><td>店长签字</td><td>" + remark1 + "</td></tr>";
+			+ totalprices + "</td><td><a href=# title='当前折扣：" + discount + "'>**</a></td><td>"
+			+ endprices + "</td><td>" + remark1 + "</td></tr>";*/
+	var newRow = "<tr><td>" + classify + "</td><td>" + catena
+	+ "</td><td>" + name + "</td><td>" + colour + "</td><td>" + quantity + "</td><td><a href=# title='当前折扣：" + discount + "'>**</a></td><td>"
+	+ endprices + "</td><td>" + remark1 + "</td></tr>";
 	$("#c_order tr:last").after(newRow);
 	order_num = order_num + endprices;
 	$("#order_num").html(order_num + "元");
@@ -245,11 +248,14 @@ function addCOrder() {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==0){
-								var row = "<td>" + order.classify + "</td><td>" + order.catena
+								/*var row = "<td>" + order.classify + "</td><td>" + order.catena
 								+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>"
 								+ order.price + "</td>" + "<td>" + order.quantity + "</td><td>"
 								+ order.totalprices + "</td><td>" + order.discount + "</td><td>"
-								+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td>";
+								+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td>";*/
+								var row = "<td>" + order.classify + "</td><td>" + order.catena
+								+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>" + order.quantity + "</td><td><a href=# title='当前折扣：" + order.discount + "'>**</a></td><td>"
+								+ order.endprices + "</td><td>" + order.remark1 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -282,9 +288,10 @@ function addSOrder(id) {
     	var s_product_discount1 = $("#s_product_discount1").val();
     	var s_product_remark1 = $("#s_product_remark1").val();
     	
+
     	var totalprices1 = parseInt(s_product1_price) * parseInt(s_product_sum1);
     	var endprices1 = parseInt(s_product1_price) * parseInt(s_product_sum1)
-    			* parseFloat(s_product_discount1);
+    			* parseFloat(s_product_discount1)*disUnit;
     	
 		var sOrder1 = new SOrder1(sSelectPin1, sSelectProduct1, sSelectProduct2, sSelectProduct3, s_product1_open, sdoorSelected1,
 					scolorSelected1, s_product1_width, s_product1_thick, s_product1_height,s_product1_price,s_product_sum1,s_product_discount1,
@@ -292,12 +299,16 @@ function addSOrder(id) {
 		 order_detail_array.push(sOrder1);
 		 
     	// console.log(cOrder);
-    	var newRow1 = "<tr><td>" + sSelectPin1 + "</td><td>" + sSelectProduct1
+    	/*var newRow1 = "<tr><td>" + sSelectPin1 + "</td><td>" + sSelectProduct1
     			+ "</td><td>" + sSelectProduct2 + "</td><td>" + sSelectProduct3 + "</td><td>"
     			+ s_product1_open + "</td>" + "<td>" + s_product1_width + "</td><td>"
     			+ s_product1_thick + "</td><td>" + s_product1_height + "</td><td>" + sdoorSelected1 + "</td><td>" + scolorSelected1 + "</td><td>"
-    			+ s_product1_price + "</td><td>" + s_product_sum1 + "</td><td>" + totalprices1 + "</td><td>" + s_product_discount1 + "</td><td>" + endprices1 + "</td><td>店长签字</td><td>" + s_product_remark1 + "</td></tr>";
-    	$("#s_order_1 tr:last").after(newRow1);
+    			+ s_product1_price + "</td><td>" + s_product_sum1 + "</td><td>" + totalprices1 + "</td><td>" + s_product_discount1 + "</td><td>" + endprices1 + "</td><td>店长签字</td><td>" + s_product_remark1 + "</td></tr>";*/
+		 var newRow1 = "<tr><td>" + sSelectPin1 + "</td><td>" + sSelectProduct1
+			+ "</td><td>" + sSelectProduct2 + "</td><td>" + sSelectProduct3 + "</td><td>"
+			+ s_product1_open + "</td>" + "<td>" + s_product1_width + "</td><td>"
+			+ s_product1_thick + "</td><td>" + s_product1_height + "</td><td>" + sdoorSelected1 + "</td><td>" + scolorSelected1 + "</td><td>" + s_product_sum1 + "</td><td><a href=# title='当前折扣：" + s_product_discount1 + "'>**</a></td><td>" + endprices1 + "</td><td>" + s_product_remark1 + "</td></tr>";
+		 $("#s_order_1 tr:last").after(newRow1);
     	order_num = order_num + endprices1;
     	$("#order_num").html(order_num + "元");
     	$("#order_num_upper").html("合计金额：" + toUpper(order_num + ""));
@@ -318,11 +329,15 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==1){
-								var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+								/*var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
 								+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
 								+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
 								+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
-								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";
+								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";*/
+								var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+								+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
+								+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
+								+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>" + order.s_product_sum1 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount1 + "'>**</a></td><td>" + order.endprices1 + "</td><td>" + order.s_product_remark1 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -352,17 +367,21 @@ function addSOrder(id) {
     	
     	var totalprices2 = parseInt(s_product2_price) * parseInt(s_product_sum2);
     	var endprices2 = parseInt(s_product2_price) * parseInt(s_product_sum2)
-    			* parseFloat(s_product_discount2);
+    			* parseFloat(s_product_discount2)*disUnit;
     	var sOrder2 = new SOrder1(sSelectPin2, sSelectProduct4, sSelectProduct5, sSelectProduct6, s_product2_open, sdoorSelected2,
 				scolorSelected2, s_product2_width, s_product2_thick, s_product2_height,s_product2_price,s_product_sum2,s_product_discount2,
 				s_product_remark2,totalprices2,endprices2,2);
 	     order_detail_array.push(sOrder2);
     	// console.log(cOrder);
-    	var newRow2 = "<tr><td>" + sSelectPin2 + "</td><td>" + sSelectProduct4
+    	/*var newRow2 = "<tr><td>" + sSelectPin2 + "</td><td>" + sSelectProduct4
     			+ "</td><td>" + sSelectProduct5 + "</td><td>" + sSelectProduct6 + "</td><td>"
     			+ s_product2_open + "</td>" + "<td>" + s_product2_width + "</td><td>"
     			+ s_product2_thick + "</td><td>" + s_product2_height + "</td><td>" + sdoorSelected2 + "</td><td>" + scolorSelected2 + "</td><td>"
-    			+ s_product2_price + "</td><td>" + s_product_sum2 + "</td><td>" + totalprices2 + "</td><td>" + s_product_discount2 + "</td><td>" + endprices2 + "</td><td>店长签字</td><td>" + s_product_remark2 + "</td></tr>";
+    			+ s_product2_price + "</td><td>" + s_product_sum2 + "</td><td>" + totalprices2 + "</td><td>" + s_product_discount2 + "</td><td>" + endprices2 + "</td><td>店长签字</td><td>" + s_product_remark2 + "</td></tr>";*/
+	     var newRow2 = "<tr><td>" + sSelectPin2 + "</td><td>" + sSelectProduct4
+			+ "</td><td>" + sSelectProduct5 + "</td><td>" + sSelectProduct6 + "</td><td>"
+			+ s_product2_open + "</td>" + "<td>" + s_product2_width + "</td><td>"
+			+ s_product2_thick + "</td><td>" + s_product2_height + "</td><td>" + sdoorSelected2 + "</td><td>" + scolorSelected2 + "</td><td>" + s_product_sum2 + "</td><td><a href=# title='当前折扣：" + s_product_discount2 + "'>**</a></td><td>" + endprices2 + "</td><td>" + s_product_remark2 + "</td></tr>";
     	$("#s_order_2 tr:last").after(newRow2);
     	order_num = order_num + endprices2;
     	$("#order_num").html(order_num + "元");
@@ -384,11 +403,15 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==2){
-								var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
+								/*var row = "<td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
 								+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
 								+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
 								+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
-								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";
+								+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td>";*/
+								var row = "<td>" + order.sSelectPin2 + "</td><td>" + order.sSelectProduct4
+								+ "</td><td>" + order.sSelectProduct5 + "</td><td>" + order.sSelectProduct6 + "</td><td>"
+								+ order.s_product2_open + "</td>" + "<td>" + order.s_product2_width + "</td><td>"
+								+ order.s_product2_thick + "</td><td>" + order.s_product2_height + "</td><td>" + order.sdoorSelected2 + "</td><td>" + order.scolorSelected2 + "</td><td>" + order.s_product_sum2 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount2 + "'>**</a></td><td>" + order.endprices2 + "</td><td>" + order.s_product_remark2 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -416,16 +439,19 @@ function addSOrder(id) {
     	
     	var totalprices3 = parseInt(s_product3_price) * parseInt(s_product_sum3);
     	var endprices3 = parseInt(s_product3_price) * parseInt(s_product_sum3)
-    			* parseFloat(s_product_discount3);
+    			* parseFloat(s_product_discount3)*disUnit;
     	var sOrder3 = new SOrder3(sSelectPin3, sSelectProduct7,  "", sdoorSelected3,
     			scolorSelected3, s_product3_width, s_product3_thick, s_product3_height,s_product3_price,s_product_sum3,s_product_discount3,
     			s_product_remark3,totalprices3,endprices3,"",3);
 	    order_detail_array.push(sOrder3);
     	// console.log(cOrder);
-    	var newRow3 = "<tr><td>" + sSelectPin3 + "</td><td>" + sSelectProduct7
+    	/*var newRow3 = "<tr><td>" + sSelectPin3 + "</td><td>" + sSelectProduct7
     			+ "</td><td>" + s_product3_width + "</td><td>" + s_product3_thick + "</td><td>"
     			+ s_product3_height + "</td><td>" + sdoorSelected3 + "</td><td>" + scolorSelected3 + "</td><td>"
-    			+ s_product3_price + "</td><td>" + s_product_sum3 + "</td><td>" + totalprices3 + "</td><td>" + s_product_discount3 + "</td><td>" + endprices3 + "</td><td>店长签字</td><td>" + s_product_remark3 + "</td></tr>";
+    			+ s_product3_price + "</td><td>" + s_product_sum3 + "</td><td>" + totalprices3 + "</td><td>" + s_product_discount3 + "</td><td>" + endprices3 + "</td><td>店长签字</td><td>" + s_product_remark3 + "</td></tr>";*/
+	    var newRow3 = "<tr><td>" + sSelectPin3 + "</td><td>" + sSelectProduct7
+		+ "</td><td>" + s_product3_width + "</td><td>" + s_product3_thick + "</td><td>"
+		+ s_product3_height + "</td><td>" + sdoorSelected3 + "</td><td>" + scolorSelected3 + "</td><td>" + s_product_sum3 + "</td><td><a href=# title='当前折扣：" + s_product_discount3 + "'>**</a></td><td>" + endprices3 + "</td><td>" + s_product_remark3 + "</td></tr>";
     	$("#s_order_3 tr:last").after(newRow3);
     	order_num = order_num + endprices3;
     	$("#order_num").html(order_num + "元");
@@ -447,10 +473,13 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==3){
-								var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								/*var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 								+ "</td><td>" + order.s_product3_width + "</td><td>" + order.s_product3_thick + "</td><td>"
 								+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
-								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";*/
+								var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								+ "</td><td>" + order.s_product3_width + "</td><td>" + order.s_product3_thick + "</td><td>"
+								+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>" + order.s_product_sum3 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount3 + "'>**</a></td><td>" + order.endprices3 + "</td><td>" + order.s_product_remark3 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -479,16 +508,19 @@ function addSOrder(id) {
     	
     	var totalprices4 = parseInt(s_product4_price) * parseInt(s_product_sum4);
     	var endprices4 = parseInt(s_product4_price) * parseInt(s_product_sum4)
-    			* parseFloat(s_product_discount4);
+    			* parseFloat(s_product_discount4)*disUnit;
     	var sOrder4 = new SOrder3(sSelectPin4, sSelectProduct8,  s_product4_open, sdoorSelected4,
     			scolorSelected4, s_product4_width, s_product4_thick, s_product4_height,s_product4_price,s_product_sum4,s_product_discount4,
     			s_product_remark4,totalprices4,endprices4,"",4);
 	    order_detail_array.push(sOrder4);
     	// console.log(cOrder);
-    	var newRow4 = "<tr><td>" + sSelectPin4 + "</td><td>" + sSelectProduct8
+/*    	var newRow4 = "<tr><td>" + sSelectPin4 + "</td><td>" + sSelectProduct8
     			+ "</td><td>" + s_product4_height + "</td><td>" + s_product4_width + "</td><td>"
     			+ s_product4_thick + "</td><td>" + s_product4_open + "</td><td>" + sdoorSelected4 + "</td><td>" + scolorSelected4 + "</td><td>"
-    			+ s_product4_price + "</td><td>" + s_product_sum4 + "</td><td>" + totalprices4 + "</td><td>" + s_product_discount4 + "</td><td>" + endprices4 + "</td><td>店长签字</td><td>" + s_product_remark4 + "</td></tr>";
+    			+ s_product4_price + "</td><td>" + s_product_sum4 + "</td><td>" + totalprices4 + "</td><td>" + s_product_discount4 + "</td><td>" + endprices4 + "</td><td>店长签字</td><td>" + s_product_remark4 + "</td></tr>";*/
+    	var newRow4 = "<tr><td>" + sSelectPin4 + "</td><td>" + sSelectProduct8
+		+ "</td><td>" + s_product4_height + "</td><td>" + s_product4_width + "</td><td>"
+		+ s_product4_thick + "</td><td>" + s_product4_open + "</td><td>" + sdoorSelected4 + "</td><td>" + scolorSelected4 + "</td><td>" + s_product_sum4 + "</td><td><a href=# title='当前折扣：" + s_product_discount4 + "'>**</a></td><td>" + endprices4 + "</td><td>" + s_product_remark4 + "</td></tr>";
     	$("#s_order_4 tr:last").after(newRow4);
     	order_num = order_num + endprices4;
     	$("#order_num").html(order_num + "元");
@@ -510,10 +542,13 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==4){
-								var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								/*var row = "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 								+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
 								+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
-								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";*/
+								var row = "<td>" + order.sSelectPin4 + "</td><td>" + order.sSelectProduct8
+								+ "</td><td>" + order.s_product4_height + "</td><td>" + order.s_product4_width + "</td><td>"
+								+ order.s_product4_thick + "</td><td>" + order.s_product4_open + "</td><td>" + order.sdoorSelected4 + "</td><td>" + order.scolorSelected4 + "</td><td>" + order.s_product_sum4 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount4 + "'>**</a></td><td>" + order.endprices4 + "</td><td>" + order.s_product_remark4 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -543,16 +578,20 @@ function addSOrder(id) {
     	
     	var totalprices5 = parseInt(s_product5_price) * parseInt(s_product_sum5);
     	var endprices5 = parseInt(s_product5_price) * parseInt(s_product_sum5)
-    			* parseFloat(s_product_discount5);
+    			* parseFloat(s_product_discount5)*disUnit;
     	var sOrder5 = new SOrder3(sSelectPin5, sSelectProduct9,  s_product5_open, sdoorSelected5,
     			scolorSelected5, s_product5_width, s_product5_thick, s_product5_height,s_product5_price,s_product_sum5,s_product_discount5,
     			s_product_remark5,totalprices5,endprices5,s_product5_method,5);
 	    order_detail_array.push(sOrder5);
     	// console.log(cOrder);
-    	var newRow5 = "<tr><td>" + sSelectPin5 + "</td><td>" + sSelectProduct9
+    	/*var newRow5 = "<tr><td>" + sSelectPin5 + "</td><td>" + sSelectProduct9
     			+ "</td><td>" + s_product5_open + "</td><td>" + s_product5_height + "</td><td>" + s_product5_thick + "</td><td>"
     			+ s_product5_width + "</td><td>" + s_product5_method + "</td><td>" + scolorSelected5 + "</td><td>"
-    			+ s_product5_price + "</td><td>" + s_product_sum5 + "</td><td>" + totalprices5 + "</td><td>" + s_product_discount5 + "</td><td>" + endprices5 + "</td><td>店长签字</td><td>" + s_product_remark5 + "</td></tr>";
+    			+ s_product5_price + "</td><td>" + s_product_sum5 + "</td><td>" + totalprices5 + "</td><td>" + s_product_discount5 + "</td><td>" + endprices5 + "</td><td>店长签字</td><td>" + s_product_remark5 + "</td></tr>";*/
+	    var newRow5 = "<tr><td>" + sSelectPin5 + "</td><td>" + sSelectProduct9
+		+ "</td><td>" + s_product5_open + "</td><td>" + s_product5_height + "</td><td>" + s_product5_thick + "</td><td>"
+		+ s_product5_width + "</td><td>" + s_product5_method + "</td><td>" + scolorSelected5 + "</td><td>" + s_product_sum5 + "</td><td><a href=# title='当前折扣：" + s_product_discount5 + "'>**</a></td><td>" + endprices5 + "</td><td>" + s_product_remark5 + "</td></tr>";
+    	
     	$("#s_order_5 tr:last").after(newRow5);
     	order_num = order_num + endprices5;
     	$("#order_num").html(order_num + "元");
@@ -574,10 +613,13 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==5){
-								var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								/*var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 								+ "</td><td>" + order.s_product3_open + "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_thick + "</td><td>"
 								+ order.s_product3_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected3 + "</td><td>"
-								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";*/
+								var row =  "<td>" + order.sSelectPin5 + "</td><td>" + order.sSelectProduct9
+								+ "</td><td>" + order.s_product5_open + "</td><td>" + order.s_product5_height + "</td><td>" + order.s_product5_thick + "</td><td>"
+								+ order.s_product5_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected5 + "</td><td>" + order.s_product_sum5 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount5 + "'>**</a></td><td>" + order.endprices5 + "</td><td>" + order.s_product_remark5 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -607,16 +649,19 @@ function addSOrder(id) {
     	
     	var totalprices6 = parseInt(s_product6_price) * parseInt(s_product_sum6);
     	var endprices6 = parseInt(s_product6_price) * parseInt(s_product_sum6)
-    			* parseFloat(s_product_discount6);
+    			* parseFloat(s_product_discount6)*disUnit;
     	var sOrder6 = new SOrder3(sSelectPin6, sSelectProduct10,s_product6_method, sdoorSelected6,
     			scolorSelected6, s_product6_width, s_product6_thick, s_product6_height,s_product6_price,s_product_sum6,s_product_discount6,
     			s_product_remark6,totalprices6,endprices6,"",6);
 	    order_detail_array.push(sOrder6);
     	// console.log(cOrder);
-    	var newRow6 = "<tr><td>" + sSelectPin6 + "</td><td>" + sSelectProduct10
+    	/*var newRow6 = "<tr><td>" + sSelectPin6 + "</td><td>" + sSelectProduct10
     			+ "</td><td>" + s_product6_height + "</td><td>" + s_product6_width + "</td><td>"
     			+ s_product6_thick + "</td><td>" + s_product6_method + "</td><td>" + scolorSelected6 + "</td><td>"
-    			+ s_product6_price + "</td><td>" + s_product_sum6 + "</td><td>" + totalprices6 + "</td><td>" + s_product_discount6 + "</td><td>" + endprices6 + "</td><td>店长签字</td><td>" + s_product_remark6 + "</td></tr>";
+    			+ s_product6_price + "</td><td>" + s_product_sum6 + "</td><td>" + totalprices6 + "</td><td>" + s_product_discount6 + "</td><td>" + endprices6 + "</td><td>店长签字</td><td>" + s_product_remark6 + "</td></tr>";*/
+	    var newRow6 = "<tr><td>" + sSelectPin6 + "</td><td>" + sSelectProduct10
+		+ "</td><td>" + s_product6_height + "</td><td>" + s_product6_width + "</td><td>"
+		+ s_product6_thick + "</td><td>" + s_product6_method + "</td><td>" + scolorSelected6 + "</td><td>" + s_product_sum6 + "</td><td><a href=# title='当前折扣：" + s_product_discount6 + "'>**</a></td><td>" + endprices6 + "</td><td>" + s_product_remark6 + "</td></tr>";
     	$("#s_order_6 tr:last").after(newRow6);
     	order_num = order_num + endprices6;
     	$("#order_num").html(order_num + "元");
@@ -638,10 +683,13 @@ function addSOrder(id) {
 						for(var i = 0; i < order_detail_array.length; i++){
 							var order = order_detail_array[i];
 							if(order.flag==6){
-								var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
+								/*var row =  "<td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 								+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
 								+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.scolorSelected3 + "</td><td>"
-								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";
+								+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td>";*/
+								var row =  "<td>" + order.sSelectPin6 + "</td><td>" + order.sSelectProduct10
+								+ "</td><td>" + order.s_product6_height + "</td><td>" + order.s_product6_width + "</td><td>"
+								+ order.s_product6_thick + "</td><td>" + order.s_product6_open + "</td><td>" + order.scolorSelected6 + "</td><td>" + order.s_product_sum6 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount6 + "'>**</a></td><td>" + order.endprices6 + "</td><td>" + order.s_product_remark6 + "</td>";
 								if(row==$(this).parent().html()){
 									delIndex=i;
 								}
@@ -665,10 +713,8 @@ function editOrder(){
 		var div;
 		if(order.flag==0){
 			var newRow = "<tr><td>" + order.classify + "</td><td>" + order.catena
-			+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>"
-			+ order.price + "</td>" + "<td>" + order.quantity + "</td><td>"
-			+ order.totalprices + "</td><td>" + order.discount + "</td><td>"
-			+ order.endprices + "</td><td>店长签字</td><td>" + order.remark1 + "</td></tr>";
+			+ "</td><td>" + order.name + "</td><td>" + order.colour + "</td><td>" + order.quantity + "</td><td><a href=# title='当前折扣：" + order.discount + "'>**</a></td><td>"
+			+ order.endprices + "</td><td>" + order.remark1 + "</td></tr>";
 		    $("#c_order tr:last").after(newRow);
 		    order_num = order_num + order.endprices;
 		    div="#c_order td"
@@ -676,8 +722,7 @@ function editOrder(){
 	    	var newRow1 = "<tr><td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
 			+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
 			+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
-			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
-			+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td></tr>";
+			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>" + order.s_product_sum1 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount1 + "'>**</a></td><td>" + order.endprices1 + "</td><td>" + order.s_product_remark1 + "</td></tr>";
 			$("#s_order_1 tr:last").after(newRow1);
 			order_num = order_num + order.endprices1;
 			div="#s_order_1 td"
@@ -685,40 +730,35 @@ function editOrder(){
 			var newRow2 = "<tr><td>" + order.sSelectPin1 + "</td><td>" + order.sSelectProduct1
 			+ "</td><td>" + order.sSelectProduct2 + "</td><td>" + order.sSelectProduct3 + "</td><td>"
 			+ order.s_product1_open + "</td>" + "<td>" + order.s_product1_width + "</td><td>"
-			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>"
-			+ order.s_product1_price + "</td><td>" + order.s_product_sum1 + "</td><td>" + order.totalprices1 + "</td><td>" + order.s_product_discount1 + "</td><td>" + order.endprices1 + "</td><td>店长签字</td><td>" + order.s_product_remark1 + "</td></tr>";
+			+ order.s_product1_thick + "</td><td>" + order.s_product1_height + "</td><td>" + order.sdoorSelected1 + "</td><td>" + order.scolorSelected1 + "</td><td>" + order.s_product_sum1 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount1 + "'>**</a></td><td>" + order.endprices1 + "</td><td>" + order.s_product_remark1 + "</td></tr>";
 			$("#s_order_2 tr:last").after(newRow2);
 			order_num = order_num + order.endprices1;
 			div="#s_order_2 td"
 		}else if(order.flag==3){
 	    	var newRow3 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 			+ "</td><td>" + order.s_product3_width + "</td><td>" + order.s_product3_thick + "</td><td>"
-			+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
-			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			+ order.s_product3_height + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>" + order.s_product_sum3 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount3 + "'>**</a></td><td>" + order.endprices3 + "</td><td>" + order.s_product_remark3 + "</td></tr>";
 			$("#s_order_3 tr:last").after(newRow3);
 			order_num = order_num + order.endprices3;
 			div="#s_order_3 td"
 		}else if(order.flag==4){
 			var newRow4 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 			+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
-			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>"
-			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.sdoorSelected3 + "</td><td>" + order.scolorSelected3 + "</td><td>" + order.s_product_sum3 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount3 + "'>**</a></td><td>" + order.endprices3 + "</td><td>" + order.s_product_remark3 + "</td></tr>";
 			$("#s_order_4 tr:last").after(newRow4);
 			order_num = order_num + order.endprices3;
 			div="#s_order_4 td"
 		}else if(order.flag==5){
 	    	var newRow5 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 			+ "</td><td>" + order.s_product3_open + "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_thick + "</td><td>"
-			+ order.s_product3_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected3 + "</td><td>"
-			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			+ order.s_product3_width + "</td><td>" + order.method + "</td><td>" + order.scolorSelected3 + "</td><td>" + order.s_product_sum3 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount3 + "'>**</a></td><td>" + order.endprices3 + "</td><td>" + order.s_product_remark3 + "</td></tr>";
 			$("#s_order_5 tr:last").after(newRow5);
 			order_num = order_num + order.endprices3;
 			div="#s_order_5 td"
 		}else if(order.flag==6){
 			var newRow6 = "<tr><td>" + order.sSelectPin3 + "</td><td>" + order.sSelectProduct7
 			+ "</td><td>" + order.s_product3_height + "</td><td>" + order.s_product3_width + "</td><td>"
-			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.scolorSelected3 + "</td><td>"
-			+ order.s_product3_price + "</td><td>" + order.s_product_sum3 + "</td><td>" + order.totalprices3 + "</td><td>" + order.s_product_discount3 + "</td><td>" + order.endprices3 + "</td><td>店长签字</td><td>" + order.s_product_remark3 + "</td></tr>";
+			+ order.s_product3_thick + "</td><td>" + order.s_product3_open + "</td><td>" + order.scolorSelected3 + "</td><td>" + order.s_product_sum3 + "</td><td><a href=# title='当前折扣：" + order.s_product_discount3 + "'>**</a></td><td>" + order.endprices3 + "</td><td>" + order.s_product_remark3 + "</td></tr>";
 	        $("#s_order_6 tr:last").after(newRow6);
 	        order_num = order_num + order.endprices3;
 	        div="#s_order_6 td"
@@ -1165,7 +1205,11 @@ function addProduct() {
 	}
 	var discount = $("#product_discount").val();
 	if (discount == null || discount == "" || discount == undefined) {
-		discount = 1;
+		discount = 10;
+	}
+	if(parseInt(discount)<parseInt(sdiscount)){
+		alert("折扣不能低于"+sdiscount+",如需更低，请联系管理员！");
+		return;
 	}
 	var colour = $("#colorSelected").children('option:selected').text();
 	if (colour == null || colour == "请选择" || colour == undefined) {
@@ -1180,7 +1224,7 @@ function addProduct() {
 		return;
 	}
 	// alert( parseInt(price)+":"+parseInt(sum)+":"+parseFloat(discount));
-	var value = parseInt(price) * parseInt(sum) * parseFloat(discount);
+	var value = parseInt(price) * parseInt(sum) * parseFloat(discount)*disUnit;
 	var productData = "<table><tr><td>成品：</td><td>" + name
 			+ "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;数量：</td><td>" + sum
 			+ "</td></tr>"
@@ -1193,6 +1237,13 @@ function addProduct() {
 }
 
 function addSelfProduct(id) {
+	if(id==1){
+		var s_product1_thick = $("#s_product1_thick").val();
+		if(s_product1_thick>450){
+			alert("厚度范围应当保持在450mm以内！");
+			return ;
+		}
+	}
 	
 	var sum = $("#s_product_sum"+id).val();
 	if (sum == null || sum == "" || sum == undefined) {
@@ -1201,7 +1252,11 @@ function addSelfProduct(id) {
 	}
 	var discount = $("#s_product_discount"+id).val();
 	if (discount == null || discount == "" || discount == undefined) {
-		discount = 1;
+		discount = 10;
+	}
+	if(parseInt(discount)<parseInt(sdiscount)){
+		alert("折扣不能低于"+sdiscount+",如需更低，请联系管理员！");
+		return;
 	}
 	var colour = $("#scolorSelected"+id).children('option:selected').text();
 	if (colour == null || colour == "请选择" || colour == undefined) {
@@ -1211,7 +1266,7 @@ function addSelfProduct(id) {
 	var price = $("#s_product"+id+"_price").html();
 	var remark = $("#s_product_remark"+id).val();
 	
-	var value = parseInt(price) * parseInt(sum) * parseFloat(discount);
+	var value = parseInt(price) * parseInt(sum) * parseFloat(discount)*disUnit;
 	var productData = "<table>"
 	productData = productData + "<tr><td>总价：</td><td>"
 			+ (parseInt(price) * parseInt(sum))
@@ -1272,19 +1327,86 @@ function print() {
 	});
 }
 
-function saveConfirm(){
+function saveConfirm(flag){
+	$("#save_flag").val(flag);
 	$('#myModal2').modal('show');
 }
 
 function saveOrder(){
+	var flag = $("#save_flag").val()
+	if($('#orderForm').valid()){
+		var name = $("#oreder_name").val();
+		$('#myModal2').modal('hide');
+		$.ajax({
+			url : webRoot + '/historyOrder/validate',
+			type : "POST",
+			dataType : "JSON",
+			data : {
+				"ordername":name
+			},
+			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			xhrFields : {
+				// 设置XMLHttpRequest的其它属性
+				// 如果这里将'withCredentials'设置为true
+				// 则服务器也要相应设置'Access-Control-Allow-Credentials: true'.
+				withCredentials : true
+			},
+			success : function(data) {
+				if(data.result=="true"){
+					alert("订单名称已存在，请重新输入！");
+					
+					return ;
+				}else{
+					
+                     if(flag==0||order_detail_id==""||order_detail_id==null){
+                    	 saveOrderDetail();
+                     }else{
+                    	 updateOrderDetail();
+                     }
+				}
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+
+	}
+	
+}
+function saveOrderDetail(){
 	var name = $("#oreder_name").val();
-	$('#myModal2').modal('hide');
 	$.ajax({
 		url : webRoot + '/historyOrder/save',
 		type : "POST",
 		dataType : "JSON",
 		data : {
 			"remark" : JSON.stringify(order_detail_array),"ordername":name
+		},
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		xhrFields : {
+			// 设置XMLHttpRequest的其它属性
+			// 如果这里将'withCredentials'设置为true
+			// 则服务器也要相应设置'Access-Control-Allow-Credentials: true'.
+			withCredentials : true
+		},
+		success : function(data) {
+			// console.log(data);
+            alert("保存成功！");
+            menu($('.page-sidebar-menu a:eq(1)'),'/historyOrder/init');
+		},
+		error : function(data) {
+			console.log(data);
+		}
+	});
+}
+function updateOrderDetail(){
+	var name = $("#oreder_name").val();
+	$.ajax({
+		url : webRoot + '/historyOrder/save',
+		type : "POST",
+		dataType : "JSON",
+		data : {
+			"remark" : JSON.stringify(order_detail_array),"ordername":name,"id":order_detail_id
 		},
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		xhrFields : {
