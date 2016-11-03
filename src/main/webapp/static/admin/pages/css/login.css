@@ -3,7 +3,8 @@ Login page
 ***/
 /* bg color */
 .login {
-  background-color: #364150 !important;
+  /* background-color: #364150 !important; */
+  background-color: #fff !important;
 }
 
 .login .logo {
@@ -14,14 +15,17 @@ Login page
 }
 
 .login .content {
-  background-color: #eceef1;
+ /*  background-color: #eceef1; */
+  background-color: #fff;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
   border-radius: 7px;
-  width: 400px;
+ /*  width: 400px; */
+  width: 480px;
   margin: 40px auto 10px auto;
+  /* margin: 40px 358px 10px auto; */
   padding: 30px;
   padding-top: 10px;
   overflow: hidden;

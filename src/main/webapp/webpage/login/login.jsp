@@ -22,7 +22,9 @@
 	<link href="${webRoot}/static/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 	<!-- END THEME STYLES -->
 </head>
-<body class="login">
+<%-- style="background:url(${webRoot}/static/logo.png) no-repeat center" --%>
+<body class="login" >
+     <img border='0' src='${webRoot}/static/ad1.jpg' width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'>
 	<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 	<div class="menu-toggler sidebar-toggler">
 	</div>
@@ -30,16 +32,18 @@
 	<!-- BEGIN LOGO -->
 	<div class="logo">
 		<div style="margin-top: 6px;">
-			<span style="color: #fff;font-size: 24px;">尼克</span><span style="color: red;font-size: 24px;">报价系统</span>
+			<!-- <span style="color: #fff;font-size: 24px;">派克</span><span style="color: red;font-size: 24px;">兄弟家居</span> -->
 		</div>
-		<%-- <img src="${webRoot}/static/admin/layout/img/logo-big.png" alt=""/> --%>
+		<%-- <img src="${webRoot}/static/admin/layout/img/logo.jpg" alt=""/> --%>
 	</div>
 	<!-- END LOGO -->
 	<!-- BEGIN LOGIN -->
-	<div class="content">
+	<div class="content" style="border-radius: 15px !important; border: 1px solid #5a0008;">
 		<!-- BEGIN LOGIN FORM -->
 		<form id="loginForm" action="${webRoot}/login/checkUser" method="post">
-			<h3 class="form-title"><spring:message code="title"></spring:message></h3>
+		    <div style="float:left;" ><img src="${webRoot}/static/logo.jpg" alt=""/></div>
+		    <div style="float:left; ">
+			<%-- <h3 class="form-title"><spring:message code="title"></spring:message></h3> --%>
 			<div class="form-group">
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 				<label class="control-label visible-ie8 visible-ie9">
@@ -50,7 +54,7 @@
 					<input class="form-control form-control-solid placeholder-no-fix" type="text" 
 						autocomplete="off" name="username" 
 						placeholder="<spring:message code="login.label.username"></spring:message>"
-						required title="<spring:message code="login.msg.username"></spring:message>"/>
+						required title="<spring:message code="login.msg.username"></spring:message>" style="background-color: #fff;"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -62,7 +66,7 @@
 					<input class="form-control form-control-solid placeholder-no-fix" type="password" 
 						autocomplete="off" name="password" 
 						placeholder="<spring:message code="login.label.password"></spring:message>"
-						required title="<spring:message code="login.msg.password"></spring:message>"/>
+						required title="<spring:message code="login.msg.password"></spring:message>" style="background-color: #fff;"/>
 				</div>
 			</div>
 			<div class="form-actions">
@@ -74,6 +78,7 @@
 				<h4><spring:message code="login.label.otherLogin"></spring:message></h4>
 				
 			</div> --%>
+			</div>
 		</form>
 		<!-- END LOGIN FORM -->
 	</div>

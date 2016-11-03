@@ -34,9 +34,19 @@
 	<div class="panel panel-primary" id="product"  style="border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">成品</h3>
+			<input id="cpid0" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName0" type="text" class="form-control"
+								id="pruductName0" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -72,7 +82,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				
+			</div>
+
+			<div class="row">
+	             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">颜色</label>
 						<div>
@@ -82,10 +96,8 @@
 							</select>
 						</div>
 					</div>
-				</div>
-			</div>
-
-			<div class="row">
+				</div>		
+			
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">单价</label>
@@ -111,6 +123,10 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			
+		<div class="row">
+
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">备注</label>
@@ -120,7 +136,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		</div>
+			
 			<div class="form-actions">
 				<div class="row">
 					<div class="col-md-offset-5 col-md-6">
@@ -137,9 +154,19 @@
 	<div class="panel panel-primary" id="s_product1" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（衣柜\书柜\酒柜\鞋柜）</h3>
+			<input id="spid1" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName1" type="text" class="form-control"
+								id="pruductName1" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -201,7 +228,11 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+
+			</div>
+
+			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">门型</label>
 						<div>
@@ -211,9 +242,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">颜色</label>
@@ -261,7 +289,11 @@
 						<div id="s_product1_price"></div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+				
+			</div>
+			<div class="row">
+			   <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">数量<span class="required">*
 						</span></label>
@@ -278,7 +310,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+			   <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">备注</label>
 						<div>
@@ -302,9 +334,19 @@
 	<div class="panel panel-primary" id="s_product2" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（餐边柜\电视柜\矮柜）</h3>
+			<input id="spid2" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName2" type="text" class="form-control"
+								id="pruductName2" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -366,7 +408,12 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			</div>
+
+			<div class="row">
+			     
+			     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">门型</label>
 						<div>
@@ -376,9 +423,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">颜色</label>
@@ -426,7 +470,10 @@
 						<div id="s_product2_price"></div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			</div>
+			<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">数量<span class="required">*
 						</span></label>
@@ -443,7 +490,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">备注</label>
 						<div>
@@ -451,6 +499,7 @@
 						</div>
 					</div>
 				</div>
+			
 			</div>
 
 		</div>
@@ -468,9 +517,19 @@
 	<div class="panel panel-primary" id="s_product3" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（橱柜\浴室柜）</h3>
+			<input id="spid3" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName3" type="text" class="form-control"
+								id="pruductName3" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -521,7 +580,11 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			</div>
+
+			<div class="row">
+			   <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">门型</label>
 						<div>
@@ -532,9 +595,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">颜色</label>
@@ -593,9 +653,19 @@
 	<div class="panel panel-primary" id="s_product4" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（木门(尺寸为测量长度））</h3>
+			<input id="spid4" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName4" type="text" class="form-control"
+								id="pruductName4" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -646,7 +716,12 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+
+			</div>
+
+			<div class="row">
+                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">开启方式</label>
 						<div>
@@ -658,12 +733,7 @@
 						</div>
 					</div>
 				</div>
-
-
-			</div>
-
-			<div class="row">
-
+                 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">门型</label>
@@ -710,6 +780,9 @@
 						</div>
 					</div>
 				</div>
+
+			</div>
+			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">备注</label>
@@ -734,9 +807,19 @@
 	<div class="panel panel-primary" id="s_product5" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（门套\窗套）</h3>
+			<input id="spid5" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName5" type="text" class="form-control"
+								id="pruductName5" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -791,7 +874,12 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+
+			</div>
+
+			<div class="row">
+			     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">宽<span class="required">*
 						</span></label>
@@ -800,10 +888,6 @@
 						</div>
 					</div>
 				</div>
-
-			</div>
-
-			<div class="row">
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">单位</label>
@@ -845,7 +929,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			</div>
+			<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label">备注</label>
 						<div>
@@ -869,9 +956,19 @@
 	<div class="panel panel-primary" id="s_product6" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（木作）</h3>
+			<input id="spid6" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+					<div class="form-group">
+						<label class="control-label">名称</label>
+						<div>
+							<input name="pruductName6" type="text" class="form-control"
+								id="pruductName6" />
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">品类</label>
@@ -936,17 +1033,17 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+				
+			</div>
+
+			<div class="row">
+
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">单位</label>
 						<div id="s_product6_method"></div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
-
-
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
 						<label class="control-label ">颜色</label>
@@ -1005,72 +1102,67 @@
 	<div class="panel panel-primary" id="s_product7" style="display: none;border-color: #5a0008;">
 		<div class="panel-heading" style="color: #D8E3F2;background-color: #5a0008;border-color: #5a0008;">
 			<h3 class="panel-title">定制（其他）</h3>
+			<input id="spid7" type="hidden" value="0" />
 		</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+						<label class="control-label">名称</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="pruductName7" type="text" class="form-control"
+								id="pruductName7" />
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+					<label class="control-label">材料</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="s_product_material" id="s_product_material" type="text" class="form-control input-small" />
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+					<label class="control-label">尺寸</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="number" id="s_product7_size" type="text" class="form-control input-small" />
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+					<label class="control-label">价格</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="number" id="s_product7_price" type="text" class="form-control input-small" />
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+					<label class="control-label">折扣</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="number" id="s_product_discount7" type="text" class="form-control input-small" />
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
+					<label class="control-label">备注</label>
 						<div>
-							<input name="number" type="text" class="form-control input-small" />
+							<input name="number" id="s_product_remark7" type="text" class="form-control input-small" />
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row">
-
-
-				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-					<div class="form-group">
-						<div>
-							<input name="number" type="text" class="form-control input-small" />
-						</div>
-					</div>
-				</div>
-
-
+				
 			</div>
 
 		</div>
 		<div class="form-actions">
 			<div class="row">
 				<div class="col-md-offset-5 col-md-6">
-					<button type="submit" class="btn green">提交</button>
+					<button type="submit" class="btn green" onclick="addSelfProduct(7)">提交</button>
 				</div>
 			</div>
 		</div>
@@ -1240,6 +1332,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>系列</td>
 					<td>产品</td>
@@ -1264,6 +1357,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>门板</td>
 					<td>侧板</td>
@@ -1295,6 +1389,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>门板</td>
 					<td>侧板</td>
@@ -1326,6 +1421,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>地柜\浴室柜</td>
@@ -1352,6 +1448,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>高 </td>
@@ -1379,6 +1476,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>窗套四面\三面 </td>
@@ -1406,6 +1504,7 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
+					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>长 </td>
@@ -1432,14 +1531,13 @@
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>&nbsp;&nbsp;&nbsp;</td>
+					<td>名称</td>
+					<td>材料</td>
+					<td>尺寸</td>
+
+					<td>折扣</td>
+					<td>折后价</td>
+					<td>备注</td>
 				</tr>
 			</tbody>
 		</table>
