@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
+<style>
+<!--
+body {font-size: 10px;}
+-->
+</style>
 <div class="col-md-12">
 	<div class="row">
 		<div class="form-group">
@@ -255,7 +260,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">宽<span class="required">*
+						<label class="control-label">W(宽度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" id="s_product1_width" type="text" class="form-control input-small" />
@@ -265,7 +270,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">厚度<span class="required">*
+						<label class="control-label">D(厚度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product1_thick"/>
@@ -275,7 +280,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">高度<span class="required">*
+						<label class="control-label">H(高度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" id="s_product1_height" type="text" class="form-control input-small" onblur="calculateProduct1()" />
@@ -436,7 +441,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">宽<span class="required">*
+						<label class="control-label">W(宽度)<span class="required">*
 						</span></label>
 						<div>
 							<input  type="text" class="form-control input-small" id="s_product2_width"/>
@@ -446,7 +451,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">厚度<span class="required">*
+						<label class="control-label">D(厚度)<span class="required">*
 						</span></label>
 						<div>
 							<input  type="text" class="form-control input-small" id="s_product2_thick"/>
@@ -456,7 +461,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">高度<span class="required">*
+						<label class="control-label">H(高度)<span class="required">*
 						</span></label>
 						<div>
 							<input  type="text" class="form-control input-small" id="s_product2_height" onblur="calculateProduct2()" />
@@ -691,7 +696,7 @@
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">高</label>
+						<label class="control-label">H(高度)</label>
 						<div>
 							<input id="s_product4_height" type="text" class="form-control input-small" />
 						</div>
@@ -699,7 +704,7 @@
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">宽</label>
+						<label class="control-label">W(宽度)</label>
 						<div>
 							<input id="s_product4_width" type="text" class="form-control input-small" onblur="calculateProduct4()"/>
 						</div>
@@ -708,7 +713,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">厚度<span class="required">*
+						<label class="control-label">D(厚度)<span class="required">*
 						</span></label>
 						<div>
 							<input id="s_product4_thick" type="text" class="form-control input-small" />
@@ -867,7 +872,7 @@
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">高</label>
+						<label class="control-label">H(高度)</label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product5_thick"/>
 						</div>
@@ -881,7 +886,7 @@
 			<div class="row">
 			     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">宽<span class="required">*
+						<label class="control-label">W(宽度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product5_width" onblur="calculateProduct5()"/>
@@ -1017,7 +1022,7 @@
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">宽</label>
+						<label class="control-label">W(宽度)</label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product6_width" onblur="calculateProduct6()"/>
 						</div>
@@ -1026,7 +1031,7 @@
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">高<span class="required">*
+						<label class="control-label">H(高度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product6_thick"/>
@@ -1162,7 +1167,7 @@
 		<div class="form-actions">
 			<div class="row">
 				<div class="col-md-offset-5 col-md-6">
-					<button type="submit" class="btn green" onclick="addSelfProduct(7)">提交</button>
+					<button type="submit" class="btn green" onclick="addSelfProduct(7)" >提交</button>
 				</div>
 			</div>
 		</div>
@@ -1185,7 +1190,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消
 				</button>
-				<button type="button" class="btn btn-primary" onclick="addCOrder()">
+				<button type="button" class="btn green" onclick="addCOrder()">
 					添加</button>
 			</div>
 		</div>
@@ -1208,7 +1213,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">取消
 				</button>
-				<button type="button" class="btn btn-primary"  id="addSOrder">
+				<button type="button" class="btn green"  id="addSOrder">
 					添加</button>
 			</div>
 		</div>
@@ -1363,10 +1368,10 @@
 					<td>侧板</td>
 					<td>隔板</td>
 					<td>开启方式</td>
-					<td>宽</td>
+					<td>W(宽度)</td>
 					
-					<td>厚度</td>
-					<td>高度</td>
+					<td>D(厚度)</td>
+					<td>H(高度)</td>
 					<td>门型</td>
 					
 					<td>颜色</td>
@@ -1395,10 +1400,10 @@
 					<td>侧板</td>
 					<td>隔板</td>
 					<td>开启方式</td>
-					<td>宽</td>
+					<td>W(宽度)</td>
 					
-					<td>厚度</td>
-					<td>高度</td>
+					<td>D(厚度)</td>
+					<td>H(高度)</td>
 					<td>门型</td>
 					
 					<td>颜色</td>
@@ -1451,9 +1456,9 @@
 					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
-					<td>高 </td>
-					<td>宽</td>
-					<td>厚 </td>
+					<td>H(高度)</td>
+					<td>W(宽度)</td>
+					<td>D(厚度)</td>
 					<td>开启方式</td>
 					<td>门型</td>
 					<td>颜色</td>
@@ -1481,8 +1486,8 @@
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>窗套四面\三面 </td>
 					<td>长</td>
-					<td>高 </td>
-					<td>宽</td>
+					<td>H(高度) </td>
+					<td>W(宽度)</td>
 					<td>单位</td>
 					<td>颜色</td>
 					<!-- <td>单价</td> -->
@@ -1508,8 +1513,8 @@
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>长 </td>
-					<td>宽</td>
-					<td>高 </td>
+					<td>W(宽度)</td>
+					<td>H(高度) </td>
 					<td>单位</td>
 					<td>颜色</td>
 					<!-- <td>单价</td> -->
@@ -1593,15 +1598,15 @@
 		</table>
 		<table width="100%" style="border: 1px solid black; border-top: none;">
 			<tr>
-				<td colspan="12" align="left">订货须知：<br> ①所定产品需参照样品标准订购。<br>
+				<td colspan="12" align="left">订货须知：<br> 
+				    <font style="font-size: 8px;">
+				    ①所定产品需参照样品标准订购。<br>
 					②本订单为派克兄弟实木家居专用，其他单位或个人使用无效。<br>
 					③本公司产品为纯实木结构，因此可能存在如色差、纹理的大小、棕眼及某些花纹处凹凸不平的现象以及因环境干湿度而出现的变形、膨胀、开裂问题，望顾客周知。<br>
 					④本公司产品自顾客收货之日起如结构、工艺等质量问题或造成产品变形、开裂、损坏而影响用户的可直接拨打派克兄弟实木家居服务热线。<br>
 					⑤如无特殊情况，订货周期为2个月。<br> ⑥此订单为您选购家居后的唯一有效凭证，请您妥善保管。<br>
 					⑦本订单有效期为六个月，过期作废。<br>
-					⑧定制品下单生产后不可随意更改材质、颜色、尺寸等；若更改，需付费更改，并征得销售、设计师、工厂下单人员、生产人员的一致同意后方可更改。<br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;监督电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商场电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;办事处：
-
+					⑧定制品下单生产后不可随意更改材质、颜色、尺寸等；若更改，需付费更改，并征得销售、设计师、工厂下单人员、生产人员的一致同意后方可更改。<br></font>
 				</td>
 			</tr>
 		</table>
@@ -1610,7 +1615,7 @@
 	<div class="form-actions">
 		<div class="row">
 			<div class="col-md-offset-4 col-md-6">
-				<a class="btn blue" onclick="saveConfirm(1)">保存</a> &nbsp;&nbsp;<a class="btn blue" onclick="saveConfirm(0)">另存为</a> &nbsp;&nbsp; <a
+				<a class="btn green" onclick="saveConfirm(1)">保存</a> &nbsp;&nbsp;<a class="btn green" onclick="saveConfirm(0)">另存为</a> &nbsp;&nbsp; <a
 					class="btn green" onclick="print()">打印</a>
 			</div>
 		</div>

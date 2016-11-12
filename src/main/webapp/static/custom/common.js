@@ -77,7 +77,7 @@ function menu(obj,url){
 	rootliActive(obj);
 	$(obj).parent().addClass('active');
 	
-	var header = '<li><i class="fa fa-home">&nbsp;</i></li>' + getHeader(obj,'','');
+	var header = '<li><i class="fa fa-home" >&nbsp;</i></li>' + getHeader(obj,'','');
 	
 	$.ajax({
 		type: 'post',

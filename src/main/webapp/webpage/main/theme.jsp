@@ -102,14 +102,18 @@
 	<div class="page-sidebar-wrapper">
 		<div class="page-sidebar navbar-collapse collapse">
 			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-				<li class="sidebar-toggler-wrapper">
-					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<ul class="page-sidebar-menu " style="background-color:#fff;" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<!-- <li class="sidebar-toggler-wrapper" style="background-color:#fff;">
+					BEGIN SIDEBAR TOGGLER BUTTON
 					<div class="sidebar-toggler" style="margin-bottom: 10px;">
 					</div>
-					<!-- END SIDEBAR TOGGLER BUTTON -->
+					END SIDEBAR TOGGLER BUTTON
+				</li> -->
+				<li >
+					&nbsp;&nbsp;
+					
 				</li>
-				<li class="active">
+				<li class="active" >
 					<a href="javascript:;" onclick="menu(this,'/index/home')">
 					<i class="icon-home"></i>
 					<span class="title">首页</span>
@@ -122,8 +126,8 @@
 		</div>
 	</div>
 	<!-- BEGIN CONTENT -->
-	<div class="page-content-wrapper">
-		<div class="page-content">
+	<div class="page-content-wrapper" style="background-color:#fff;">
+		<div class="page-content" >
 			<!-- BEGIN PAGE HEADER-->
 			<h3 class="page-title">首页</h3>
 			<div class="page-bar">

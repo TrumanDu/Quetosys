@@ -1943,10 +1943,19 @@ function addProduct() {
 function addSelfProduct(id) {
 	if(id==1){
 		var s_product1_thick = $("#s_product1_thick").val();
-		if(s_product1_thick>450){
-			alert("厚度范围应当保持在450mm以内！");
-			return ;
+		var s_selected = $("#sSelectPin1").children('option:selected').val();
+		if(s_selected==0){
+			if(s_product1_thick>600){
+				alert("厚度范围应当保持在600mm以内！");
+				return ;
+			}
+		}else{
+			if(s_product1_thick>450){
+				alert("厚度范围应当保持在450mm以内！");
+				return ;
+			}
 		}
+		
 	}
 	var productData = "<table>";
 	var discount = $("#s_product_discount"+id).val();

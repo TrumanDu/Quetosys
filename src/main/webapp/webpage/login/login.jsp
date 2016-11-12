@@ -69,8 +69,8 @@
 						required title="<spring:message code="login.msg.password"></spring:message>" style="background-color: #fff;"/>
 				</div>
 			</div>
-			<div class="form-actions">
-				<button type="button" id="loginBtn" class="btn btn-success uppercase">
+			<div class="form-actions" >
+				<button type="button" id="loginBtn" class="btn btn-success uppercase" style="background-color: #5a0008">
 					<spring:message code="login.btn.login"></spring:message>
 				</button>
 			</div>
