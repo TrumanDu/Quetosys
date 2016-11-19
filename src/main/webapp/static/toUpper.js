@@ -2003,8 +2003,14 @@ function addSelfProduct(id) {
 	$("#addSOrder").attr("onclick","addSOrder("+id+")"); 
 	$('#myModal3').modal('show');
 }
-
+function preprint() {
+	$("div").remove(".print");
+	$("table").remove(".order_head");
+	print()
+}
 function print() {
+	
+	
 	var flagArray=[0,0,0,0,0,0,0,0]
 	for(var i = 0; i < order_detail_array.length; i++){
 		var order = order_detail_array[i];
@@ -2044,7 +2050,92 @@ function print() {
 			}
 		}
 	}
-	
+	var order_head_length = $("#order_head").height();
+	var c_length = $("#c_order").height();
+	var s1 = $("#s_order_1").height();
+	var s2 = $("#s_order_2").height();
+	var s3 = $("#s_order_3").height();
+	var s4 = $("#s_order_4").height();
+	var s5 = $("#s_order_5").height();
+	var s6 = $("#s_order_6").height();
+	var s7 = $("#s_order_7").height();
+	var has=400;
+	for(var i=0;i<8;i++){
+		if(i==0&&c_length!==null){
+			has=has-c_length;
+		}
+		if(i==1&&s1!==null){
+			if(has>=s1){
+				has=has-c_length;
+			}else{
+				$("#c_order").after('<div style="page-break-after: always;" class="print"></div>');
+				$("#s_order_1").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s1;
+			}
+		}
+		if(i==2&&s2!==null){
+			if(has>=s2){
+				has=has-s2;
+			}else{
+				$("#s_order_1").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_2").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s2;
+			}
+		}
+		if(i==3&&s3!==null){
+			if(has>=s3){
+				has=has-s3;
+			}else{
+				$("#s_order_2").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_3").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s3;
+			}
+		}
+		if(i==4&&s4!==null){
+			if(has>=s4){
+				has=has-s4;
+			}else{
+				$("#s_order_3").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_4").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s4;
+			}
+		}
+		if(i==5&&s5!==null){
+			if(has>=s5){
+				has=has-s5;
+			}else{
+				$("#s_order_4").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_5").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s5;
+			}
+		}
+		if(i==6&&s6!==null){
+			if(has>=s6){
+				has=has-s6;
+			}else{
+				$("#s_order_5").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_6").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s6;
+			}
+		}
+		if(i==7&&s7!==null){
+			if(has>=s7){
+				has=has-s7;
+			}else{
+				$("#s_order_6").after('<div style="page-break-after: always;"  class="print"></div>');
+				$("#s_order_7").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				has=400;
+				has=has-s7;
+			}
+		}
+	}
+	console.log(order_head_length+"|"+c_length+"|"+s1+"|"+s2+"|"+s3+"|"+s4+"|"+s5+"|"+s6+"|"+s7);
 	$("#visaReport").jqprint({
 		debug : false, // 如果是true则可以显示iframe查看效果（iframe默认高和宽都很小，可以再源码中调大），默认是false
 		importCSS : true, // true表示引进原来的页面的css，默认是true。（如果是true，先会找$("link[media=print]")，若没有会去找$("link")中的css文件）

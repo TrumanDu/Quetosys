@@ -1294,7 +1294,7 @@ body {font-size: 10px;}
 </script>
 <div>
 	<div id="visaReport">
-		<table width="90%">
+		<table width="90%"  id="order_head">
 			<tbody>
 			    <tr>
 					<td colspan="12" align="left">
@@ -1319,16 +1319,14 @@ body {font-size: 10px;}
 					<td colspan="8" align="left"><b>送货地址：</b><span
 						style="text-decoration: underline">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp; </span></td>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
 					<td colspan="4" align="left"><b>签单日期：&nbsp;</b><span
 						style="text-decoration: underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
 				</tr>
 			</tbody>
 		</table>
 
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" 
-			id="c_order">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" id="c_order">
 			<tbody>
 				<tr>
 					<td colspan="12" align="center"><h4>
@@ -1385,6 +1383,7 @@ body {font-size: 10px;}
 				</tr>
 			</tbody>
 		</table>
+		
 		
 		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_2">
 			<tbody>
@@ -1557,13 +1556,13 @@ body {font-size: 10px;}
 		</table>
 		<table width="100%" style="border: 1px solid black; border-top: none">
 			<tr>
-				<td colspan="12" align="left">付款确认：&nbsp;订金/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额缴纳时间/</td>
+				<td colspan="12" align="left">付款确认：&nbsp;订金/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余额缴纳时间/</td>
 			</tr>
 		</table>
 
 		<table width="100%" style="border: 1px solid black; border-top: none;">
 			<tr>
-				<td colspan="12" align="left">送货时间（24小时制）/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对时间：
+				<td colspan="12" align="left">送货时间（24小时制）/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对时间：
 					有严格要求□ &nbsp;&nbsp;大概要求□</td>
 			</tr>
 		</table>
@@ -1592,7 +1591,7 @@ body {font-size: 10px;}
 		<table width="100%" style="border: 1px solid black; border-top: none;">
 			<tr>
 				<td colspan="12" align="left">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设计师确认：
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户确认：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp设计师确认：
                 </td>
 			</tr>
 		</table>
@@ -1616,7 +1615,7 @@ body {font-size: 10px;}
 		<div class="row">
 			<div class="col-md-offset-4 col-md-6">
 				<a class="btn green" onclick="saveConfirm(1)">保存</a> &nbsp;&nbsp;<a class="btn green" onclick="saveConfirm(0)">另存为</a> &nbsp;&nbsp; <a
-					class="btn green" onclick="print()">打印</a>
+					class="btn green" onclick="preprint()">打印</a>
 			</div>
 		</div>
 	</div>
