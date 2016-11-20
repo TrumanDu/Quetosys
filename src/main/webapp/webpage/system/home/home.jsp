@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <style>
+.table-c table{border-right:1px solid #F00;border-bottom:1px solid #F00} 
+.table-c table td{border-left:1px solid #F00;border-top:1px solid #F00} 
 <!--
 body {font-size: 10px;}
 -->
@@ -1294,7 +1296,7 @@ body {font-size: 10px;}
 </script>
 <div>
 	<div id="visaReport">
-		<table width="90%"  id="order_head">
+		<table width="90%"  id="order_head" >
 			<tbody>
 			    <tr>
 					<td colspan="12" align="left">
@@ -1326,7 +1328,7 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" id="c_order">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" id="c_order" class="table-c" >
 			<tbody>
 				<tr>
 					<td colspan="12" align="center"><h4>
@@ -1346,13 +1348,13 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_1">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_1" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="17" align="center">
@@ -1379,13 +1381,13 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_2">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_2" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="17" align="center">
@@ -1412,12 +1414,12 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_3">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_3" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="14" align="center">
@@ -1439,12 +1441,12 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_4">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_4" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
@@ -1467,12 +1469,12 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_5">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_5" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
@@ -1495,12 +1497,12 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_6">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_6" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
@@ -1522,12 +1524,12 @@ body {font-size: 10px;}
 					<td>折扣</td>
 					<td>折后价</td>
 					<!-- <td>备注</td> -->
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_7">
+		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_7" class="table-c">
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
@@ -1541,7 +1543,7 @@ body {font-size: 10px;}
 
 					<td>折扣</td>
 					<td>折后价</td>
-					<td>备注</td>
+					<td width="50">备注</td>
 				</tr>
 			</tbody>
 		</table>
