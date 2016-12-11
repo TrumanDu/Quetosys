@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <style>
-.table-c table{border-right:1px solid #F00;border-bottom:1px solid #F00} 
-.table-c table td{border-left:1px solid #F00;border-top:1px solid #F00} 
+/* .table-c table{border-right:1px solid #F00;border-bottom:1px solid #F00} 
+.table-c table td{border-left:1px solid #F00;border-top:1px solid #F00}  */
 <!--
 body {font-size: 10px;}
 -->
@@ -866,7 +866,7 @@ body {font-size: 10px;}
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">长</label>
+						<label class="control-label">W(宽度)</label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product5_height"/>
 						</div>
@@ -888,7 +888,7 @@ body {font-size: 10px;}
 			<div class="row">
 			     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">W(宽度)<span class="required">*
+						<label class="control-label">D(厚度)<span class="required">*
 						</span></label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product5_width" onblur="calculateProduct5()"/>
@@ -1016,7 +1016,7 @@ body {font-size: 10px;}
 
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">长</label>
+						<label class="control-label">W(宽度)</label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product6_height"/>
 						</div>
@@ -1024,7 +1024,7 @@ body {font-size: 10px;}
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 					<div class="form-group">
-						<label class="control-label">W(宽度)</label>
+						<label class="control-label">D(厚度)</label>
 						<div>
 							<input name="number" type="text" class="form-control input-small" id="s_product6_width" onblur="calculateProduct6()"/>
 						</div>
@@ -1296,7 +1296,7 @@ body {font-size: 10px;}
 </script>
 <div>
 	<div id="visaReport">
-		<table width="90%"  id="order_head" >
+		<table width="100%"  id="order_head" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;">
 			<tbody>
 			    <tr>
 					<td colspan="12" align="left">
@@ -1328,12 +1328,15 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" id="c_order" class="table-c" >
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;" id="c_order">
 			<tbody>
 				<tr>
-					<td colspan="12" align="center"><h4>
+					<td colspan="12" align="center">
+					<!-- <h4 style="height: 10px;">
 							<b>成品</b>
-						</h4></td>
+						</h4> -->
+					<font style="font-weight:bold;font-size: medium;">成品</font>	
+				   </td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1354,11 +1357,13 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_1" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;"  id="s_order_1" >
 			<tbody>
 				<tr>
 				<td colspan="17" align="center">
-				<h4><b>（衣柜\书柜\酒柜\鞋柜）</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>（衣柜\书柜\酒柜\鞋柜）</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">（衣柜\书柜\酒柜\鞋柜）</font>	
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1387,11 +1392,13 @@ body {font-size: 10px;}
 		</table>
 		
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_2" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;" id="s_order_2" >
 			<tbody>
 				<tr>
 				<td colspan="17" align="center">
-				<h4><b>（餐边柜\电视柜\矮柜）</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>（餐边柜\电视柜\矮柜）</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">（餐边柜\电视柜\矮柜）</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1419,11 +1426,13 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_3" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;"  id="s_order_3" >
 			<tbody>
 				<tr>
 				<td colspan="14" align="center">
-				<h4><b>橱柜\浴室柜</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>橱柜\浴室柜</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">橱柜\浴室柜</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1446,11 +1455,13 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none"  id="s_order_4" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;"  id="s_order_4" >
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
-				<h4><b>木门(尺寸为测量长度）</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>木门(尺寸为测量长度）</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">木门(尺寸为测量长度）</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1474,11 +1485,13 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_5" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;" id="s_order_5" >
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
-				<h4><b>门套\窗套</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>门套\窗套</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">门套\窗套</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1486,9 +1499,9 @@ body {font-size: 10px;}
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
 					<td>窗套四面\三面 </td>
-					<td>长</td>
-					<td>H(高度) </td>
 					<td>W(宽度)</td>
+					<td>H(高度) </td>
+					<td>D(厚度)</td>
 					<td>单位</td>
 					<td>颜色</td>
 					<!-- <td>单价</td> -->
@@ -1502,19 +1515,21 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_6" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;" id="s_order_6" >
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
-				<h4><b>木作</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>木作</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">木作</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
 					<td>名称</td>
 					<td>品类</td>
 					<td>材质&nbsp;&nbsp;&nbsp;</td>
-					<td>长 </td>
 					<td>W(宽度)</td>
+					<td>D(厚度)</td>
 					<td>H(高度) </td>
 					<td>单位</td>
 					<td>颜色</td>
@@ -1529,11 +1544,13 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="2" cellspacing="0" style="border-top: none" id="s_order_7" class="table-c">
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" style="border: 1px solid black;border-collapse:collapse;border-top: none;" id="s_order_7" >
 			<tbody>
 				<tr>
 				<td colspan="15" align="center">
-				<h4><b>其它</b></h4></td>
+				<!-- <h4 style="height: 10px;"><b>其它</b></h4> -->
+				<font style="font-weight:bold;font-size: medium;">其它</font>
+				</td>
 				</tr>
 				<tr id="c_head">
 					<!-- <td>序号</td> -->
@@ -1548,7 +1565,7 @@ body {font-size: 10px;}
 			</tbody>
 		</table>
 
-		<table width="100%" style="border: 1px solid black; border-top: none"
+		<table width="100%" style="border: 1px solid black; border-collapse:collapse;border-top: none;"
 			id="c_order">
 			<tr id="sum_head">
 				<td colspan="4" align="right"><div id="order_num_upper">合计金额：</div></td>

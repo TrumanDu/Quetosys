@@ -2069,7 +2069,7 @@ function print() {
 				has=has-c_length;
 			}else{
 				$("#c_order").after('<div style="page-break-after: always;" class="print"></div>');
-				$("#s_order_1").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_1").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;"  class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s1;
 			}
@@ -2079,7 +2079,7 @@ function print() {
 				has=has-s2;
 			}else{
 				$("#s_order_1").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_2").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_2").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;" class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s2;
 			}
@@ -2089,7 +2089,7 @@ function print() {
 				has=has-s3;
 			}else{
 				$("#s_order_2").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_3").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_3").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;" class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s3;
 			}
@@ -2099,7 +2099,7 @@ function print() {
 				has=has-s4;
 			}else{
 				$("#s_order_3").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_4").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_4").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;" class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s4;
 			}
@@ -2109,7 +2109,7 @@ function print() {
 				has=has-s5;
 			}else{
 				$("#s_order_4").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_5").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_5").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;" class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s5;
 			}
@@ -2119,7 +2119,7 @@ function print() {
 				has=has-s6;
 			}else{
 				$("#s_order_5").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_6").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_6").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;"  class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s6;
 			}
@@ -2129,7 +2129,7 @@ function print() {
 				has=has-s7;
 			}else{
 				$("#s_order_6").after('<div style="page-break-after: always;"  class="print"></div>');
-				$("#s_order_7").before('<table width="90%"  class="order_head">'+$("#order_head").html()+'</table>');
+				$("#s_order_7").before('<table width="100%" style="border: 1px solid black;border-left: none;border-right: none;border-top: none;" class="order_head">'+$("#order_head").html()+'</table>');
 				has=400;
 				has=has-s7;
 			}
